@@ -13,3 +13,7 @@ GitHubSearch/
 │   └── AI_CONVERSATION_LOG.md
 └── GitHubSearch.xcodeproj/
 ```
+
+## 관련 문서
+
+- [PRD](docs/PRD.md)
