@@ -41,6 +41,7 @@
 		B44A6459CC9C3DA973BF7A4D /* SearchRepositoriesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B24599C954C8B42E61CC8A7 /* SearchRepositoriesUseCase.swift */; };
 		B8EEEEEA3ED15F01512FF8B3 /* RecentSearchStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD92F8FD780A6926EE30B57F /* RecentSearchStorageTests.swift */; };
 		E8E3AFFDD9A97B67745B1CEF /* SearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3410A99A98BE117696DF44 /* SearchResultViewModel.swift */; };
+		EDB4736B5464BFAA445E9C83 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523042343EACAEFFA2649FB8 /* WebViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 
 /* Begin PBXFileReference section */
 		2D17DCEF4B619D7713A45A05 /* SearchResponseDTOTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchResponseDTOTests.swift; sourceTree = "<group>"; };
+		523042343EACAEFFA2649FB8 /* WebViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		5A82855FDDC7E745B2DE00D3 /* SearchResultViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchResultViewModelTests.swift; sourceTree = "<group>"; };
 		6B24599C954C8B42E61CC8A7 /* SearchRepositoriesUseCase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchRepositoriesUseCase.swift; sourceTree = "<group>"; };
 		6C0CCAB942D9CD305D00B514 /* RecentSearchCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecentSearchCell.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 			children = (
 				9FB1188D2F2F240000BE6CDE /* Search */,
 				9FD624D42F2F6BE500FA751F /* Common */,
+				CB2501CC35398891C2691322 /* WebView */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -332,6 +335,15 @@
 			);
 			name = Domain;
 			path = Domain;
+			sourceTree = "<group>";
+		};
+		CB2501CC35398891C2691322 /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				523042343EACAEFFA2649FB8 /* WebViewController.swift */,
+			);
+			name = WebView;
+			path = WebView;
 			sourceTree = "<group>";
 		};
 		D4C48E0AFA2D53A3B6B7FD5C /* Presentation */ = {
@@ -495,6 +507,7 @@
 				E8E3AFFDD9A97B67745B1CEF /* SearchResultViewModel.swift in Sources */,
 				2ABBCE02A6C2D88422162D6F /* RepositoryCell.swift in Sources */,
 				AE2819E4682E923789F8A84C /* SearchResultViewController.swift in Sources */,
+				EDB4736B5464BFAA445E9C83 /* WebViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

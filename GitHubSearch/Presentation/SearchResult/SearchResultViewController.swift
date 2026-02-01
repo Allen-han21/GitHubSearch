@@ -181,7 +181,12 @@ extension SearchResultViewController: UITableViewDataSource {
 extension SearchResultViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        // Issue #7에서 WebViewController로 이동 구현 예정
+
+        guard let repository = viewModel.repository(at: indexPath.row),
+              let url = URL(string: repository.htmlUrl) else { return }
+
+        let webVC = WebViewController(url: url, repoName: repository.name)
+        navigationController?.pushViewController(webVC, animated: true)
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
