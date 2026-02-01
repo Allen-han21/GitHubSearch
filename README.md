@@ -7,6 +7,7 @@ GitHub 저장소 검색 iOS 앱
 | 검색 화면 | 최근 검색어 | 검색 결과 | WebView |
 |:---:|:---:|:---:|:---:|
 | 검색어 입력 | 최근 검색어 목록 | 저장소 리스트 | GitHub 페이지 |
+|<img src="https://github.com/user-attachments/assets/e700b286-5743-4397-8b30-41b331ddc22b" width="200" />|<img src="https://github.com/user-attachments/assets/04b54333-4f7d-4217-9d4c-a4c28f021737" width="200" />|<img src="https://github.com/user-attachments/assets/58de10cf-b6f3-4ed2-ad35-82e0658742d3" width="200" />|<img src="https://github.com/user-attachments/assets/ebac2abb-08bb-4643-a4c0-c23d4a54dfe0" width="200" />|
 
 ---
 
