@@ -31,6 +31,7 @@
 		9FB118912F2F240000BE6CDE /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB1188F2F2F240000BE6CDE /* SearchViewModel.swift */; };
 		9FB118A02F2F250000BE6CDE /* SearchViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB1189E2F2F250000BE6CDE /* SearchViewModelTests.swift */; };
 		9FB118A12F2F250000BE6CDE /* SearchViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB1189F2F2F250000BE6CDE /* SearchViewControllerTests.swift */; };
+		B8EEEEEA3ED15F01512FF8B3 /* RecentSearchStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD92F8FD780A6926EE30B57F /* RecentSearchStorageTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		9FB1189E2F2F250000BE6CDE /* SearchViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModelTests.swift; sourceTree = "<group>"; };
 		9FB1189F2F2F250000BE6CDE /* SearchViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewControllerTests.swift; sourceTree = "<group>"; };
 		DC31C28329EC203D2C021F0D /* RecentSearchUseCase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RecentSearchUseCase.swift; path = GitHubSearch/Domain/UseCases/RecentSearchUseCase.swift; sourceTree = "<group>"; };
+		DD92F8FD780A6926EE30B57F /* RecentSearchStorageTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecentSearchStorageTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -303,6 +305,7 @@
 			children = (
 				9FB1189E2F2F250000BE6CDE /* SearchViewModelTests.swift */,
 				9FB1189F2F2F250000BE6CDE /* SearchViewControllerTests.swift */,
+				DD92F8FD780A6926EE30B57F /* RecentSearchStorageTests.swift */,
 			);
 			path = GitHubSearchTests;
 			sourceTree = "<group>";
@@ -450,6 +453,7 @@
 			files = (
 				9FB118A02F2F250000BE6CDE /* SearchViewModelTests.swift in Sources */,
 				9FB118A12F2F250000BE6CDE /* SearchViewControllerTests.swift in Sources */,
+				B8EEEEEA3ED15F01512FF8B3 /* RecentSearchStorageTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

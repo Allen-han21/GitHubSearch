@@ -4,14 +4,17 @@ import XCTest
 final class SearchViewModelTests: XCTestCase {
 
     var sut: SearchViewModel!
+    var mockRecentSearchUseCase: MockRecentSearchUseCase!
 
     override func setUp() {
         super.setUp()
-        sut = SearchViewModel()
+        mockRecentSearchUseCase = MockRecentSearchUseCase()
+        sut = SearchViewModel(recentSearchUseCase: mockRecentSearchUseCase)
     }
 
     override func tearDown() {
         sut = nil
+        mockRecentSearchUseCase = nil
         super.tearDown()
     }
 
@@ -125,5 +128,139 @@ final class SearchViewModelTests: XCTestCase {
 
         // when & then - 크래시 없이 실행되면 성공
         sut.search(query: "swift")
+    }
+
+    // MARK: - 최근 검색어 테스트
+
+    func test_검색하면_최근_검색어에_저장된다() {
+        // given
+        sut.onSearchResult = { _ in }
+
+        // when
+        sut.search(query: "swift")
+
+        // then
+        XCTAssertTrue(mockRecentSearchUseCase.saveSearchCalled)
+        XCTAssertEqual(mockRecentSearchUseCase.savedQuery, "swift")
+    }
+
+    func test_loadRecentSearches_호출시_최근검색어가_로드된다() {
+        // given
+        mockRecentSearchUseCase.mockSearches = [
+            RecentSearch(query: "swift", searchedAt: Date()),
+            RecentSearch(query: "kotlin", searchedAt: Date())
+        ]
+
+        // when
+        sut.loadRecentSearches()
+
+        // then
+        XCTAssertEqual(sut.recentSearches.count, 2)
+        XCTAssertEqual(sut.recentSearches[0].query, "swift")
+    }
+
+    func test_loadRecentSearches_호출시_콜백이_호출된다() {
+        // given
+        var callbackCalled = false
+        sut.onRecentSearchesUpdated = {
+            callbackCalled = true
+        }
+
+        // when
+        sut.loadRecentSearches()
+
+        // then
+        XCTAssertTrue(callbackCalled)
+    }
+
+    func test_deleteRecentSearch_호출시_해당_검색어가_삭제된다() {
+        // given
+        mockRecentSearchUseCase.mockSearches = [
+            RecentSearch(query: "swift", searchedAt: Date()),
+            RecentSearch(query: "kotlin", searchedAt: Date())
+        ]
+        sut.loadRecentSearches()
+
+        // when
+        sut.deleteRecentSearch(at: 0)
+
+        // then
+        XCTAssertTrue(mockRecentSearchUseCase.deleteSearchCalled)
+        XCTAssertEqual(mockRecentSearchUseCase.deletedQuery, "swift")
+    }
+
+    func test_deleteAllRecentSearches_호출시_모든_검색어가_삭제된다() {
+        // given
+        mockRecentSearchUseCase.mockSearches = [
+            RecentSearch(query: "swift", searchedAt: Date()),
+            RecentSearch(query: "kotlin", searchedAt: Date())
+        ]
+        sut.loadRecentSearches()
+
+        // when
+        sut.deleteAllRecentSearches()
+
+        // then
+        XCTAssertTrue(mockRecentSearchUseCase.deleteAllCalled)
+    }
+
+    func test_recentSearch_at_유효한_인덱스로_호출시_검색어를_반환한다() {
+        // given
+        mockRecentSearchUseCase.mockSearches = [
+            RecentSearch(query: "swift", searchedAt: Date())
+        ]
+        sut.loadRecentSearches()
+
+        // when
+        let result = sut.recentSearch(at: 0)
+
+        // then
+        XCTAssertEqual(result?.query, "swift")
+    }
+
+    func test_recentSearch_at_범위초과_인덱스로_호출시_nil을_반환한다() {
+        // given
+        sut.loadRecentSearches()
+
+        // when
+        let result = sut.recentSearch(at: 100)
+
+        // then
+        XCTAssertNil(result)
+    }
+}
+
+// MARK: - Mock
+
+final class MockRecentSearchUseCase: RecentSearchUseCaseProtocol {
+
+    var mockSearches: [RecentSearch] = []
+
+    var saveSearchCalled = false
+    var savedQuery: String?
+
+    var deleteSearchCalled = false
+    var deletedQuery: String?
+
+    var deleteAllCalled = false
+
+    func getRecentSearches() -> [RecentSearch] {
+        return mockSearches
+    }
+
+    func saveSearch(_ query: String) {
+        saveSearchCalled = true
+        savedQuery = query
+    }
+
+    func deleteSearch(_ query: String) {
+        deleteSearchCalled = true
+        deletedQuery = query
+        mockSearches.removeAll { $0.query == query }
+    }
+
+    func deleteAllSearches() {
+        deleteAllCalled = true
+        mockSearches.removeAll()
     }
 }
