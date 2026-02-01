@@ -14,6 +14,9 @@
 		9FB1183E2F2F10F300BE6CDE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FB118332F2F10F300BE6CDE /* LaunchScreen.storyboard */; };
 		9FB1183F2F2F10F300BE6CDE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FB118352F2F10F300BE6CDE /* Main.storyboard */; };
 		9FB118522F2F200200BE6CDE /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9FB118512F2F200100BE6CDE /* SnapKit */; };
+		9FB118672F2F210700BE6CDE /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB118642F2F210400BE6CDE /* Repository.swift */; };
+		9FB118682F2F210800BE6CDE /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB118652F2F210500BE6CDE /* SearchResult.swift */; };
+		9FB118692F2F210900BE6CDE /* RecentSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB118662F2F210600BE6CDE /* RecentSearch.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +28,9 @@
 		9FB118342F2F10F300BE6CDE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9FB118362F2F10F300BE6CDE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		9FB118372F2F10F300BE6CDE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9FB118642F2F210400BE6CDE /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		9FB118652F2F210500BE6CDE /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
+		9FB118662F2F210600BE6CDE /* RecentSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearch.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +65,8 @@
 			isa = PBXGroup;
 			children = (
 				9FB118402F2F116B00BE6CDE /* Application */,
+				9FB118602F2F210000BE6CDE /* Domain */,
+				9FB1186A2F2F210A00BE6CDE /* Data */,
 				9FB118422F2F11C200BE6CDE /* Presentation */,
 				9FB118412F2F117700BE6CDE /* Resources */,
 			);
@@ -91,6 +99,71 @@
 				9FB118372F2F10F300BE6CDE /* ViewController.swift */,
 			);
 			path = Presentation;
+			sourceTree = "<group>";
+		};
+		9FB118602F2F210000BE6CDE /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				9FB118612F2F210100BE6CDE /* Entities */,
+				9FB118622F2F210200BE6CDE /* Protocols */,
+				9FB118632F2F210300BE6CDE /* UseCases */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		9FB118612F2F210100BE6CDE /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				9FB118642F2F210400BE6CDE /* Repository.swift */,
+				9FB118652F2F210500BE6CDE /* SearchResult.swift */,
+				9FB118662F2F210600BE6CDE /* RecentSearch.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		9FB118622F2F210200BE6CDE /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		9FB118632F2F210300BE6CDE /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		9FB1186A2F2F210A00BE6CDE /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				9FB1186B2F2F210B00BE6CDE /* Network */,
+				9FB1186C2F2F210C00BE6CDE /* Repositories */,
+				9FB1186D2F2F210D00BE6CDE /* Storage */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		9FB1186B2F2F210B00BE6CDE /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		9FB1186C2F2F210C00BE6CDE /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		9FB1186D2F2F210D00BE6CDE /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Storage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -174,6 +247,9 @@
 				9FB118392F2F10F300BE6CDE /* AppDelegate.swift in Sources */,
 				9FB1183A2F2F10F300BE6CDE /* SceneDelegate.swift in Sources */,
 				9FB1183B2F2F10F300BE6CDE /* ViewController.swift in Sources */,
+				9FB118672F2F210700BE6CDE /* Repository.swift in Sources */,
+				9FB118682F2F210800BE6CDE /* SearchResult.swift in Sources */,
+				9FB118692F2F210900BE6CDE /* RecentSearch.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
