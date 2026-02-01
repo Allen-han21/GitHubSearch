@@ -1,0 +1,1142 @@
+
+ ▐▛███▜▌   Claude Code v2.1.29
+▝▜█████▛▘  Opus 4.5 · Claude Max
+  ▘▘ ▝▝    ~/Dev/Repo/GitHubSearch
+
+❯ /ai-dev.sentinel restore sentinel-2026-02-01-184409 (docs/ai-dev/경로) 
+
+⏺ Sentinel 파일을 복원하겠습니다. 먼저 지정된 경로에서 파일을 찾아보겠습니다.
+
+⏺ Searched for 2 patterns (ctrl+o to expand)
+
+⏺ Sentinel 파일을 찾았습니다. 파일을 읽어 상태를 복원하겠습니다.
+
+⏺ Read 1 file (ctrl+o to expand)
+
+⏺ 이제 plan.md와 현재 Git 상태를 확인하겠습니다.
+
+⏺ Read 1 file (ctrl+o to expand)
+
+⏺ Bash(git branch --show-current && git log -3 --oneline)
+  ⎿ main
+    25f17d0 feat(data): Network Layer 기본 구현 (Endpoint, NetworkError, Ne
+    tworkService)
+    … +4 lines (ctrl+o to expand)
+
+
+⏺ Git 상태가 sentinel과 일치합니다. 이제 Task Chain을 복원하겠습니다.
+
+⏺ ---
+  Sentinel 복원 완료
+
+  Session ID: sentinel-2026-02-01-184409
+  프로젝트: GitHubSearch
+  저장 시점: 2026-02-01 18:44:09
+
+  ---
+  복원된 상태
+  ┌───────────────────────────────┬──────────────┐
+  │             Phase             │     상태     │
+  ├───────────────────────────────┼──────────────┤
+  │ Phase 0: 프로젝트 기반 구축   │ ✅ completed │
+  ├───────────────────────────────┼──────────────┤
+  │ Issue #4: 검색 화면 - 기본 UI │ 🔜 다음 작업 │
+  ├───────────────────────────────┼──────────────┤
+  │ Issue #5: 최근 검색어         │ ⏳ blocked   │
+  ├───────────────────────────────┼──────────────┤
+  │ Issue #6: 검색 결과 리스트    │ ⏳ blocked   │
+  ├───────────────────────────────┼──────────────┤
+  │ Issue #7: WebView             │ ⏳ blocked   │
+  ├───────────────────────────────┼──────────────┤
+  │ Issue #8: 페이지네이션 (추가) │ ⏳ blocked   │
+  ├───────────────────────────────┼──────────────┤
+  │ Issue #9: 자동완성 (추가)     │ ⏳ blocked   │
+  └───────────────────────────────┴──────────────┘
+  Git 상태
+
+  - Branch: main
+  - Last Commit: 25f17d0 (feat(data): Network Layer 기본 구현)
+
+  확정된 기술 스택
+  ┌──────────────┬───────────────────────────┐
+  │     영역     │           선택            │
+  ├──────────────┼───────────────────────────┤
+  │ Architecture │ Clean Architecture + MVVM │
+  ├──────────────┼───────────────────────────┤
+  │ UI Framework │ UIKit + SnapKit           │
+  ├──────────────┼───────────────────────────┤
+  │ Network      │ URLSession (async/await)  │
+  ├──────────────┼───────────────────────────┤
+  │ WebView      │ WKWebView                 │
+  ├──────────────┼───────────────────────────┤
+  │ Search UI    │ UISearchController        │
+  └──────────────┴───────────────────────────┘
+  ---
+  다음 작업
+
+  Issue #4: 검색 화면 - 기본 UI
+  - Task 4.1: SearchViewController 생성
+  - Task 4.2: SearchViewModel 생성
+  - Task 4.3: SceneDelegate 수정 (Storyboard 제거)
+  - Task 4.4: 검색 실행 연결
+
+  ---
+  복원이 완료되었습니다. Issue #4 구현을 시작할까요?
+
+✻ Cooked for 46s
+
+❯ Issue #4 구현 시작해줘 
+
+⏺ Issue #4 구현을 시작하겠습니다. 먼저 현재 프로젝트 구조와 기존 파일들을
+  확인합니다.
+
+⏺ Searched for 1 pattern, read 1 file (ctrl+o to expand)
+
+⏺ 기존 파일들을 확인하겠습니다.
+
+⏺ Read 4 files (ctrl+o to expand)
+
+⏺ Info.plist에서 Storyboard 설정을 확인하겠습니다.
+
+⏺ Searched for 2 patterns, read 1 file (ctrl+o to expand)
+
+⏺ 이제 Issue #4를 구현합니다. Task 4.1부터 순서대로 진행하겠습니다.
+
+  Task 4.1: SearchViewController 생성
+
+⏺ Write(GitHubSearch/Presentation/Search/SearchViewController.swift)
+  ⎿  Wrote 141 lines to
+     GitHubSearch/Presentation/Search/SearchViewController.swift
+      1 import UIKit
+      2 import SnapKit
+      3 
+      4 final class SearchViewController: UIViewController {
+      5 
+      6     // MARK: - UI Components
+      7 
+      8     private let searchController = UISearchController(searchResul
+        tsController: nil)
+      9     private let tableView = UITableView(frame: .zero, style: .pla
+        in)
+     … +131 lines (ctrl+o to expand)
+
+⏺ Task 4.2: SearchViewModel 생성
+
+⏺ Write(GitHubSearch/Presentation/Search/SearchViewModel.swift)
+  ⎿  Wrote 30 lines to
+     GitHubSearch/Presentation/Search/SearchViewModel.swift
+       1 import Foundation
+       2 
+       3 final class SearchViewModel {
+       4 
+       5     // MARK: - Output Callbacks
+       6 
+       7     var onSearchResult: ((String) -> Void)?
+       8     var onError: ((Error) -> Void)?
+       9 
+      10     // MARK: - Properties
+     … +20 lines (ctrl+o to expand)
+  ⎿  Found 1 new diagnostic issue in 1 file (ctrl+o to expand)
+
+⏺ Task 4.3: SceneDelegate 수정 및 Storyboard 제거
+
+⏺ Update(GitHubSearch/Application/SceneDelegate.swift)
+  ⎿  Added 9 lines, removed 5 lines
+      11  
+      12      var window: UIWindow?
+      13  
+      14 -                                                               
+      14      func scene(_ scene: UIScene, willConnectTo session: UIScene
+          Session, options connectionOptions: UIScene.ConnectionOptions) 
+          {
+      16 -        // Use this method to optionally configure and attach t
+         -he UIWindow `window` to the provided UIWindowScene `scene`.    
+      17 -        // If using a storyboard, the `window` property will au
+         -tomatically be initialized and attached to the scene.          
+      18 -        // This delegate does not imply the connecting scene or
+         - session are new (see `application:configurationForConnectingSc
+         -eneSession` instead).                                          
+      19 -        guard let _ = (scene as? UIWindowScene) else { return }
+      15 +        guard let windowScene = (scene as? UIWindowScene) else 
+         +{ return }                                                     
+      16 +                                                               
+      17 +        let window = UIWindow(windowScene: windowScene)        
+      18 +        let searchViewController = SearchViewController()      
+      19 +        let navigationController = UINavigationController(rootV
+         +iewController: searchViewController)                           
+      20 +                                                               
+      21 +        window.rootViewController = navigationController       
+      22 +        window.makeKeyAndVisible()                             
+      23 +        self.window = window                                   
+      24      }
+      25  
+      26      func sceneDidDisconnect(_ scene: UIScene) {
+  ⎿  Found 2 new diagnostic issues in 1 file (ctrl+o to expand)
+
+⏺ Info.plist에서 Storyboard 참조를 제거합니다.
+
+⏺ Update(GitHubSearch/Resources/Info.plist)
+  ⎿  Removed 2 lines
+      15            <string>Default Configuration</string>
+      16            <key>UISceneDelegateClassName</key>
+      17            <string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
+      18 -          <key>UISceneStoryboardFile</key>                     
+      19 -          <string>Main</string>                                
+      18          </dict>
+      19        </array>
+      20      </dict>
+  ⎿  Found 1 new diagnostic issue in 1 file (ctrl+o to expand)
+
+⏺ 기존 ViewController.swift를 삭제합니다.
+
+⏺ Bash(rm /Users/allen/Dev/Repo/GitHubSearch/GitHubSearch/Presentation/ViewContr
+      oller.swift)
+  ⎿  (No content)
+
+⏺ 빌드를 테스트합니다.
+
+⏺ Bash(xcodebuild -project GitHubSearch.xcodeproj -scheme GitHubSearch
+      -destination 'platform=iOS Simulator,name=iPhone 16' build 2>&1 | tail
+      -50)
+  ⎿ ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchai
+    ns/XcodeDefault.xctoolchain/usr/bin/swiftc --version
+    … +261 lines (ctrl+o to expand)
+
+  ⎿  (timeout 2m)
+
+⏺ 프로젝트 파일에서 ViewController.swift 참조를 제거하고 새 파일들을 추가해야
+  합니다. pbxproj를 수정하겠습니다.
+
+⏺ Read 1 file (ctrl+o to expand)
+
+⏺ pbxproj를 수정하여 ViewController.swift를 제거하고 새 파일들을 추가합니다.
+
+⏺ Update(GitHubSearch.xcodeproj/project.pbxproj)
+  ⎿  Added 2 lines, removed 1 line
+       9  /* Begin PBXBuildFile section */
+      10      9FB118392F2F10F300BE6CDE /* AppDelegate.swift in Sources */
+           = {isa = PBXBuildFile; fileRef = 9FB1182F2F2F10F300BE6CDE /* A
+          ppDelegate.swift */; };
+      11      9FB1183A2F2F10F300BE6CDE /* SceneDelegate.swift in Sources 
+          */ = {isa = PBXBuildFile; fileRef = 9FB118362F2F10F300BE6CDE /*
+           SceneDelegate.swift */; };
+      12 -    9FB1183B2F2F10F300BE6CDE /* ViewController.swift in Sources
+         - */ = {isa = PBXBuildFile; fileRef = 9FB118372F2F10F300BE6CDE /
+         -* ViewController.swift */; };                                  
+      12      9FB1183C2F2F10F300BE6CDE /* Assets.xcassets in Resources */
+           = {isa = PBXBuildFile; fileRef = 9FB118302F2F10F300BE6CDE /* A
+          ssets.xcassets */; };
+      13      9FB1183E2F2F10F300BE6CDE /* LaunchScreen.storyboard in Reso
+          urces */ = {isa = PBXBuildFile; fileRef = 9FB118332F2F10F300BE6
+          CDE /* LaunchScreen.storyboard */; };
+      14      9FB1183F2F2F10F300BE6CDE /* Main.storyboard in Resources */
+           = {isa = PBXBuildFile; fileRef = 9FB118352F2F10F300BE6CDE /* M
+          ain.storyboard */; };
+      15 +    9FB118902F2F240000BE6CDE /* SearchViewController.swift in S
+         +ources */ = {isa = PBXBuildFile; fileRef = 9FB1188E2F2F240000BE
+         +6CDE /* SearchViewController.swift */; };                      
+      16 +    9FB118912F2F240000BE6CDE /* SearchViewModel.swift in Source
+         +s */ = {isa = PBXBuildFile; fileRef = 9FB1188F2F2F240000BE6CDE 
+         +/* SearchViewModel.swift */; };                                
+      17      9FB118522F2F200200BE6CDE /* SnapKit in Frameworks */ = {isa
+           = PBXBuildFile; productRef = 9FB118512F2F200100BE6CDE /* SnapK
+          it */; };
+      18      9FB118672F2F210700BE6CDE /* Repository.swift in Sources */ 
+          = {isa = PBXBuildFile; fileRef = 9FB118642F2F210400BE6CDE /* Re
+          pository.swift */; };
+      19      9FB118682F2F210800BE6CDE /* SearchResult.swift in Sources *
+          / = {isa = PBXBuildFile; fileRef = 9FB118652F2F210500BE6CDE /* 
+          SearchResult.swift */; };
+
+⏺ Update(GitHubSearch.xcodeproj/project.pbxproj)
+  ⎿  Added 2 lines, removed 1 line
+      34      9FB118322F2F10F300BE6CDE /* Base */ = {isa = PBXFileReferen
+          ce; lastKnownFileType = file.storyboard; name = Base; path = Ba
+          se.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+      35      9FB118342F2F10F300BE6CDE /* Base */ = {isa = PBXFileReferen
+          ce; lastKnownFileType = file.storyboard; name = Base; path = Ba
+          se.lproj/Main.storyboard; sourceTree = "<group>"; };
+      36      9FB118362F2F10F300BE6CDE /* SceneDelegate.swift */ = {isa =
+           PBXFileReference; lastKnownFileType = sourcecode.swift; path =
+           SceneDelegate.swift; sourceTree = "<group>"; };
+      37 -    9FB118372F2F10F300BE6CDE /* ViewController.swift */ = {isa 
+         -= PBXFileReference; lastKnownFileType = sourcecode.swift; path 
+         -= ViewController.swift; sourceTree = "<group>"; };             
+      37 +    9FB1188E2F2F240000BE6CDE /* SearchViewController.swift */ =
+         + {isa = PBXFileReference; lastKnownFileType = sourcecode.swift;
+         + path = SearchViewController.swift; sourceTree = "<group>"; }; 
+      38 +    9FB1188F2F2F240000BE6CDE /* SearchViewModel.swift */ = {isa
+         + = PBXFileReference; lastKnownFileType = sourcecode.swift; path
+         + = SearchViewModel.swift; sourceTree = "<group>"; };           
+      39      9FB118642F2F210400BE6CDE /* Repository.swift */ = {isa = PB
+          XFileReference; lastKnownFileType = sourcecode.swift; path = Re
+          pository.swift; sourceTree = "<group>"; };
+      40      9FB118652F2F210500BE6CDE /* SearchResult.swift */ = {isa = 
+          PBXFileReference; lastKnownFileType = sourcecode.swift; path = 
+          SearchResult.swift; sourceTree = "<group>"; };
+      41      9FB118662F2F210600BE6CDE /* RecentSearch.swift */ = {isa = 
+          PBXFileReference; lastKnownFileType = sourcecode.swift; path = 
+          RecentSearch.swift; sourceTree = "<group>"; };
+
+⏺ Presentation 그룹을 수정하여 Search 폴더와 파일들을 추가합니다.
+
+⏺ Update(GitHubSearch.xcodeproj/project.pbxproj)
+  ⎿  Added 10 lines, removed 1 line
+      110      9FB118422F2F11C200BE6CDE /* Presentation */ = {
+      111        isa = PBXGroup;
+      112        children = (
+      113 -        9FB118372F2F10F300BE6CDE /* ViewController.swift */,  
+      113 +        9FB1188D2F2F240000BE6CDE /* Search */,                
+      114        );
+      115        path = Presentation;
+      116        sourceTree = "<group>";
+      117      };
+      118 +    9FB1188D2F2F240000BE6CDE /* Search */ = {                 
+      119 +      isa = PBXGroup;                                         
+      120 +      children = (                                            
+      121 +        9FB1188E2F2F240000BE6CDE /* SearchViewController.swift
+          + */,                                                          
+      122 +        9FB1188F2F2F240000BE6CDE /* SearchViewModel.swift */, 
+      123 +      );                                                      
+      124 +      path = Search;                                          
+      125 +      sourceTree = "<group>";                                 
+      126 +    };                                                        
+      127      9FB118602F2F210000BE6CDE /* Domain */ = {
+      128        isa = PBXGroup;
+      129        children = (
+
+⏺ Sources 빌드 페이즈를 수정합니다.
+
+⏺ Update(GitHubSearch.xcodeproj/project.pbxproj)
+  ⎿  Added 2 lines, removed 1 line
+      275        files = (
+      276          9FB118392F2F10F300BE6CDE /* AppDelegate.swift in Sourc
+           es */,
+      277          9FB1183A2F2F10F300BE6CDE /* SceneDelegate.swift in Sou
+           rces */,
+      278 -        9FB1183B2F2F10F300BE6CDE /* ViewController.swift in So
+          -urces */,                                                     
+      278 +        9FB118902F2F240000BE6CDE /* SearchViewController.swift
+          + in Sources */,                                               
+      279 +        9FB118912F2F240000BE6CDE /* SearchViewModel.swift in S
+          +ources */,                                                    
+      280          9FB118672F2F210700BE6CDE /* Repository.swift in Source
+           s */,
+      281          9FB118682F2F210800BE6CDE /* SearchResult.swift in Sour
+           ces */,
+      282          9FB118692F2F210900BE6CDE /* RecentSearch.swift in Sour
+           ces */,
+
+⏺ 빌드 설정에서 Main storyboard 참조를 제거합니다.
+
+⏺ Update(GitHubSearch.xcodeproj/project.pbxproj)
+  ⎿  Added 2 lines, removed 4 lines
+      322          INFOPLIST_FILE = GitHubSearch/Resources/Info.plist;
+      323          INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents
+            = YES;
+      324          INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+      325 -        INFOPLIST_KEY_UIMainStoryboardFile = Main;            
+      326 -        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = 
+          -"UIInterfaceOrientationPortrait UIInterfaceOrientationPortrait
+          -UpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrie
+          -ntationLandscapeRight";                                       
+      325 +                INFOPLIST_KEY_UISupportedInterfaceOrientations
+          +_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientation
+          +PortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInter
+          +faceOrientationLandscapeRight";                               
+      326          INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone 
+           = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandsc
+           apeLeft UIInterfaceOrientationLandscapeRight";
+      327          IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+      328          LD_RUNPATH_SEARCH_PATHS = (
+     ...
+      349          INFOPLIST_FILE = GitHubSearch/Resources/Info.plist;
+      350          INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents
+            = YES;
+      351          INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+      353 -        INFOPLIST_KEY_UIMainStoryboardFile = Main;            
+      354 -        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = 
+          -"UIInterfaceOrientationPortrait UIInterfaceOrientationPortrait
+          -UpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrie
+          -ntationLandscapeRight";                                       
+      352 +                INFOPLIST_KEY_UISupportedInterfaceOrientations
+          +_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientation
+          +PortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInter
+          +faceOrientationLandscapeRight";                               
+      353          INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone 
+           = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandsc
+           apeLeft UIInterfaceOrientationLandscapeRight";
+      354          IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+      355          LD_RUNPATH_SEARCH_PATHS = (
+
+⏺ 빌드를 다시 테스트합니다.
+
+⏺ Bash(xcodebuild -project GitHubSearch.xcodeproj -scheme GitHubSearch
+      -destination 'platform=iOS Simulator,name=iPhone 16' build 2>&1 | tail
+      -30)
+  ⎿ 2026-02-01 18:52:25.865 appintentsnltrainingprocessor[16549:13682352] N
+    o AppShortcuts found - Skipping.
+    … +50 lines (ctrl+o to expand)
+
+  ⎿  (timeout 2m)
+
+⏺ 빌드 성공. 이제 시뮬레이터에서 실행하여 확인합니다.
+
+⏺ Skill(xcode-run)
+  ⎿  Successfully loaded skill
+
+⏺ Bash(osascript <<'EOF'
+      tell application "Xcode" to activate…)
+  ⎿ menu item Run of menu Product of menu bar item Product of menu bar 1 of
+     application process Xcode
+
+
+⏺ 🚀 Xcode 빌드 시작!
+  📱 시뮬레이터에서 앱이 실행됩니다.
+
+  빌드 성공 후 앱 화면을 확인해주세요. 다음이 보여야 합니다:
+  - Navigation Bar에 "GitHub Search" 타이틀
+  - UISearchController의 검색창
+  - Large Title 스타일
+
+  ---
+  Issue #4 완료 요약
+  ┌──────┬──────┬──────────────────────────────────────┐
+  │ Task │ 상태 │                 설명                 │
+  ├──────┼──────┼──────────────────────────────────────┤
+  │ 4.1  │ ✅   │ SearchViewController 생성            │
+  ├──────┼──────┼──────────────────────────────────────┤
+  │ 4.2  │ ✅   │ SearchViewModel 생성                 │
+  ├──────┼──────┼──────────────────────────────────────┤
+  │ 4.3  │ ✅   │ SceneDelegate 수정 (Storyboard 제거) │
+  ├──────┼──────┼──────────────────────────────────────┤
+  │ 4.4  │ ✅   │ 검색 실행 연결 (Alert로 임시 확인)   │
+  └──────┴──────┴──────────────────────────────────────┘
+  생성/수정된 파일
+  ┌────────────────────────────────────────────────┬──────────────────────┐
+  │                      파일                      │         작업         │
+  ├────────────────────────────────────────────────┼──────────────────────┤
+  │ Presentation/Search/SearchViewController.swift │ 생성                 │
+  ├────────────────────────────────────────────────┼──────────────────────┤
+  │ Presentation/Search/SearchViewModel.swift      │ 생성                 │
+  ├────────────────────────────────────────────────┼──────────────────────┤
+  │ Application/SceneDelegate.swift                │ 수정                 │
+  ├────────────────────────────────────────────────┼──────────────────────┤
+  │ Resources/Info.plist                           │ Storyboard 참조 제거 │
+  ├────────────────────────────────────────────────┼──────────────────────┤
+  │ project.pbxproj                                │ 파일 참조 업데이트   │
+  ├────────────────────────────────────────────────┼──────────────────────┤
+  │ Presentation/ViewController.swift              │ 삭제                 │
+  └────────────────────────────────────────────────┴──────────────────────┘
+  시뮬레이터에서 정상 동작 확인 후 커밋하시겠습니까?
+
+✻ Crunched for 2m 16s
+
+❯ 커밋을 task 단위로 쪼개서 로컬에 커밋하고 테스트 진행 
+
+⏺ Task 단위로 커밋을 분리하겠습니다. 먼저 현재 변경사항을 확인합니다.
+
+⏺ Bash(git status)
+  ⎿  On branch main
+     Changes not staged for commit:
+       (use "git add/rm <file>..." to update what will be committed)
+     … +19 lines (ctrl+o to expand)
+
+⏺ Task 단위로 커밋합니다. 의존성 순서를 고려하여 진행합니다.
+
+  Task 4.2: SearchViewModel 생성
+
+⏺ Bash(git add GitHubSearch/Presentation/Search/SearchViewModel.swift && git
+      commit -m "feat(presentation): SearchViewModel 생성…)
+  ⎿ [main 89927d4] feat(presentation): SearchViewModel 생성
+     1 file changed, 29 insertions(+)
+     create mode 100644 GitHubSearch/Presentation/Search/SearchViewModel.sw
+    ift
+
+
+⏺ Task 4.1 + 4.4: SearchViewController 생성 및 검색 실행 연결
+
+⏺ Bash(git add GitHubSearch/Presentation/Search/SearchViewController.swift &&
+      git commit -m "feat(presentation): SearchViewController 생성 및 검색 실행
+      연결…)
+  ⎿ [main 5ccb9ca] feat(presentation): SearchViewController 생성 및 검색 실
+    행 연결
+     1 file changed, 140 insertions(+)
+    … +2 lines (ctrl+o to expand)
+
+
+⏺ Task 4.3: SceneDelegate 수정 및 Storyboard 제거
+
+⏺ Bash(git add GitHubSearch/Application/SceneDelegate.swift
+      GitHubSearch/Resources/Info.plist GitHubSearch.xcodeproj/project.pbxproj
+      && git add -u GitHubSearch/Present…)
+  ⎿  [main d52d25b] refactor(app): Storyboard 제거 및 코드 기반 UI 전환
+      4 files changed, 27 insertions(+), 34 deletions(-)
+      delete mode 100644 GitHubSearch/Presentation/ViewController.swift
+
+⏺ 커밋 완료. 빌드 테스트를 실행합니다.
+
+⏺ Bash(xcodebuild -project GitHubSearch.xcodeproj -scheme GitHubSearch
+      -destination 'platform=iOS Simulator,name=iPhone 16' build 2>&1 | grep -E
+      "(BUILD|error:|warning…)
+  ⎿ 2026-02-01 18:58:21.630 appintentsmetadataprocessor[18449:13694971] war
+    ning: Metadata extraction skipped. No AppIntents.framework dependency f
+    ound.
+    ** BUILD SUCCEEDED **
+
+
+  ⎿  (timeout 2m)
+
+⏺ Bash(git log --oneline -5)
+  ⎿ d52d25b refactor(app): Storyboard 제거 및 코드 기반 UI 전환
+    5ccb9ca feat(presentation): SearchViewController 생성 및 검색 실행 연결
+    89927d4 feat(presentation): SearchViewModel 생성
+    … +4 lines (ctrl+o to expand)
+
+
+⏺ ---
+  Issue #4 완료
+
+  커밋 내역
+  ┌─────────┬─────────┬─────────────────────────────────────────────┐
+  │  커밋   │  Task   │                    설명                     │
+  ├─────────┼─────────┼─────────────────────────────────────────────┤
+  │ 89927d4 │ 4.2     │ SearchViewModel 생성                        │
+  ├─────────┼─────────┼─────────────────────────────────────────────┤
+  │ 5ccb9ca │ 4.1+4.4 │ SearchViewController 생성 및 검색 실행 연결 │
+  ├─────────┼─────────┼─────────────────────────────────────────────┤
+  │ d52d25b │ 4.3     │ Storyboard 제거 및 코드 기반 UI 전환        │
+  └─────────┴─────────┴─────────────────────────────────────────────┘
+  빌드 테스트
+
+  ✅ BUILD SUCCEEDED
+
+  ---
+  진행 상황
+  ┌─────────────────┬──────────────┐
+  │      Task       │     상태     │
+  ├─────────────────┼──────────────┤
+  │ Phase 0         │ ✅ completed │
+  ├─────────────────┼──────────────┤
+  │ Issue #4        │ ✅ completed │
+  ├─────────────────┼──────────────┤
+  │ Issue #5        │ 🔜 다음 작업 │
+  ├─────────────────┼──────────────┤
+  │ Issue #6        │ ⏳ blocked   │
+  ├─────────────────┼──────────────┤
+  │ Issue #7        │ ⏳ blocked   │
+  ├─────────────────┼──────────────┤
+  │ Issue #8 (추가) │ ⏳ blocked   │
+  ├─────────────────┼──────────────┤
+  │ Issue #9 (추가) │ ⏳ blocked   │
+  └─────────────────┴──────────────┘
+  ---
+  다음 Issue #5 (최근 검색어 기능) 구현을 시작할까요?
+
+✻ Worked for 59s
+
+❯ Issue #4 구현한 내용에 대해서 테스트 코드 작성해줘.                       
+  - SearchViewModel 에서 쿼리할때 빈문자열, 공백 처리 되었는지, 콜백 정상   
+  호출되는지                                                                
+  - SearchViewController 에서 tableView 존재하는지                          
+  XCTest 사용하고, 테스트 코드 함수명을 알기 쉽게 한글로 작성해주고, Mock   
+  필요하면 프로토콜로 생성                                                  
+
+⏺ 테스트 코드를 작성하겠습니다. 먼저 테스트 타겟 존재 여부를 확인합니다.
+
+⏺ Searched for 1 pattern, read 1 file (ctrl+o to expand)
+
+⏺ 테스트 타겟을 생성하고 테스트 코드를 작성합니다.
+
+⏺ Bash(mkdir -p GitHubSearchTests)
+  ⎿  (No content)
+
+⏺ SearchViewModel 테스트 코드 작성
+
+⏺ Write(GitHubSearchTests/SearchViewModelTests.swift)
+  ⎿  Wrote 130 lines to GitHubSearchTests/SearchViewModelTests.swift
+       1 import XCTest
+       2 @testable import GitHubSearch
+       3 
+       4 final class SearchViewModelTests: XCTestCase {
+       5 
+       6     var sut: SearchViewModel!
+       7 
+       8     override func setUp() {
+       9         super.setUp()
+      10         sut = SearchViewModel()
+     … +120 lines (ctrl+o to expand)
+
+⏺ SearchViewController 테스트 코드 작성
+
+⏺ Write(GitHubSearchTests/SearchViewControllerTests.swift)
+  ⎿  Wrote 102 lines to GitHubSearchTests/SearchViewControllerTests.swift
+       1 import XCTest
+       2 @testable import GitHubSearch
+       3 
+       4 final class SearchViewControllerTests: XCTestCase {
+       5 
+       6     var sut: SearchViewController!
+       7 
+       8     override func setUp() {
+       9         super.setUp()
+      10         sut = SearchViewController()
+     … +92 lines (ctrl+o to expand)
+  ⎿  Found 1 new diagnostic issue in 1 file (ctrl+o to expand)
+
+⏺ 이제 Xcode 프로젝트에 테스트 타겟을 추가합니다.
+
+⏺ Read 1 file (ctrl+o to expand)
+  ⎿  Found 1 new diagnostic issue in 1 file (ctrl+o to expand)
+
+⏺ pbxproj에 테스트 타겟을 추가합니다. 단계별로 수정하겠습니다.
+
+⏺ Update(GitHubSearch.xcodeproj/project.pbxproj)
+  ⎿  Added 2 lines
+      14      9FB1183F2F2F10F300BE6CDE /* Main.storyboard in Resources */
+           = {isa = PBXBuildFile; fileRef = 9FB118352F2F10F300BE6CDE /* M
+          ain.storyboard */; };
+      15      9FB118902F2F240000BE6CDE /* SearchViewController.swift in S
+          ources */ = {isa = PBXBuildFile; fileRef = 9FB1188E2F2F240000BE
+          6CDE /* SearchViewController.swift */; };
+      16      9FB118912F2F240000BE6CDE /* SearchViewModel.swift in Source
+          s */ = {isa = PBXBuildFile; fileRef = 9FB1188F2F2F240000BE6CDE 
+          /* SearchViewModel.swift */; };
+      17 +    9FB118A02F2F250000BE6CDE /* SearchViewModelTests.swift in S
+         +ources */ = {isa = PBXBuildFile; fileRef = 9FB1189E2F2F250000BE
+         +6CDE /* SearchViewModelTests.swift */; };                      
+      18 +    9FB118A12F2F250000BE6CDE /* SearchViewControllerTests.swift
+         + in Sources */ = {isa = PBXBuildFile; fileRef = 9FB1189F2F2F250
+         +000BE6CDE /* SearchViewControllerTests.swift */; };            
+      19      9FB118522F2F200200BE6CDE /* SnapKit in Frameworks */ = {isa
+           = PBXBuildFile; productRef = 9FB118512F2F200100BE6CDE /* SnapK
+          it */; };
+      20      9FB118672F2F210700BE6CDE /* Repository.swift in Sources */ 
+          = {isa = PBXBuildFile; fileRef = 9FB118642F2F210400BE6CDE /* Re
+          pository.swift */; };
+      21      9FB118682F2F210800BE6CDE /* SearchResult.swift in Sources *
+          / = {isa = PBXBuildFile; fileRef = 9FB118652F2F210500BE6CDE /* 
+          SearchResult.swift */; };
+
+⏺ Update(GitHubSearch.xcodeproj/project.pbxproj)
+  ⎿  Added 10 lines
+      28      9FB118852F2F230500BE6CDE /* NetworkService.swift in Sources
+           */ = {isa = PBXBuildFile; fileRef = 9FB118822F2F230200BE6CDE /
+          * NetworkService.swift */; };
+      29  /* End PBXBuildFile section */
+      30  
+      31 +/* Begin PBXContainerItemProxy section */                      
+      32 +    9FB118A42F2F250000BE6CDE /* PBXContainerItemProxy */ = {   
+      33 +      isa = PBXContainerItemProxy;                             
+      34 +      containerPortal = 9FB1180F2F2F10ED00BE6CDE /* Project obj
+         +ect */;                                                        
+      35 +      proxyType = 1;                                           
+      36 +      remoteGlobalIDString = 9FB118162F2F10ED00BE6CDE;         
+      37 +      remoteInfo = GitHubSearch;                               
+      38 +    };                                                         
+      39 +/* End PBXContainerItemProxy section */                        
+      40 +                                                               
+      41  /* Begin PBXFileReference section */
+      42      9FB118172F2F10ED00BE6CDE /* GitHubSearch.app */ = {isa = PB
+          XFileReference; explicitFileType = wrapper.application; include
+          InIndex = 0; path = GitHubSearch.app; sourceTree = BUILT_PRODUC
+          TS_DIR; };
+      43      9FB1182F2F2F10F300BE6CDE /* AppDelegate.swift */ = {isa = P
+          BXFileReference; lastKnownFileType = sourcecode.swift; path = A
+          ppDelegate.swift; sourceTree = "<group>"; };
+
+⏺ Update(GitHubSearch.xcodeproj/project.pbxproj)
+  ⎿  Added 3 lines
+      40  
+      41  /* Begin PBXFileReference section */
+      42      9FB118172F2F10ED00BE6CDE /* GitHubSearch.app */ = {isa = PB
+          XFileReference; explicitFileType = wrapper.application; include
+          InIndex = 0; path = GitHubSearch.app; sourceTree = BUILT_PRODUC
+          TS_DIR; };
+      43 +    9FB1189C2F2F250000BE6CDE /* GitHubSearchTests.xctest */ = {
+         +isa = PBXFileReference; explicitFileType = wrapper.cfbundle; in
+         +cludeInIndex = 0; path = GitHubSearchTests.xctest; sourceTree =
+         + BUILT_PRODUCTS_DIR; };                                        
+      44 +    9FB1189E2F2F250000BE6CDE /* SearchViewModelTests.swift */ =
+         + {isa = PBXFileReference; lastKnownFileType = sourcecode.swift;
+         + path = SearchViewModelTests.swift; sourceTree = "<group>"; }; 
+      45 +    9FB1189F2F2F250000BE6CDE /* SearchViewControllerTests.swift
+         + */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.s
+         +wift; path = SearchViewControllerTests.swift; sourceTree = "<gr
+         +oup>"; };                                                      
+      46      9FB1182F2F2F10F300BE6CDE /* AppDelegate.swift */ = {isa = P
+          BXFileReference; lastKnownFileType = sourcecode.swift; path = A
+          ppDelegate.swift; sourceTree = "<group>"; };
+      47      9FB118302F2F10F300BE6CDE /* Assets.xcassets */ = {isa = PBX
+          FileReference; lastKnownFileType = folder.assetcatalog; path = 
+          Assets.xcassets; sourceTree = "<group>"; };
+      48      9FB118312F2F10F300BE6CDE /* Info.plist */ = {isa = PBXFileR
+          eference; lastKnownFileType = text.plist.xml; path = Info.plist
+          ; sourceTree = "<group>"; };
+
+⏺ Update(GitHubSearch.xcodeproj/project.pbxproj)
+  ⎿  Added 7 lines
+      71        );
+      72        runOnlyForDeploymentPostprocessing = 0;
+      73      };
+      74 +    9FB118992F2F250000BE6CDE /* Frameworks */ = {              
+      75 +      isa = PBXFrameworksBuildPhase;                           
+      76 +      buildActionMask = 2147483647;                            
+      77 +      files = (                                                
+      78 +      );                                                       
+      79 +      runOnlyForDeploymentPostprocessing = 0;                  
+      80 +    };                                                         
+      81  /* End PBXFrameworksBuildPhase section */
+      82  
+      83  /* Begin PBXGroup section */
+
+⏺ Update(GitHubSearch.xcodeproj/project.pbxproj)
+  ⎿  Added 11 lines
+      85        isa = PBXGroup;
+      86        children = (
+      87          9FB118382F2F10F300BE6CDE /* GitHubSearch */,
+      88 +        9FB1189D2F2F250000BE6CDE /* GitHubSearchTests */,      
+      89          9FB118182F2F10ED00BE6CDE /* Products */,
+      90        );
+      91        sourceTree = "<group>";
+     ...
+       94        isa = PBXGroup;
+       95        children = (
+       96          9FB118172F2F10ED00BE6CDE /* GitHubSearch.app */,
+       97 +        9FB1189C2F2F250000BE6CDE /* GitHubSearchTests.xctest *
+          +/,                                                            
+       98        );
+       99        name = Products;
+      100        sourceTree = "<group>";
+      101      };
+      102 +    9FB1189D2F2F250000BE6CDE /* GitHubSearchTests */ = {      
+      103 +      isa = PBXGroup;                                         
+      104 +      children = (                                            
+      105 +        9FB1189E2F2F250000BE6CDE /* SearchViewModelTests.swift
+          + */,                                                          
+      106 +        9FB1189F2F2F250000BE6CDE /* SearchViewControllerTests.
+          +swift */,                                                     
+      107 +      );                                                      
+      108 +      path = GitHubSearchTests;                               
+      109 +      sourceTree = "<group>";                                 
+      110 +    };                                                        
+      111      9FB118382F2F10F300BE6CDE /* GitHubSearch */ = {
+      112        isa = PBXGroup;
+      113        children = (
+
+⏺ Update(GitHubSearch.xcodeproj/project.pbxproj)
+  ⎿  Added 18 lines
+      251        productReference = 9FB118172F2F10ED00BE6CDE /* GitHubSea
+           rch.app */;
+      252        productType = "com.apple.product-type.application";
+      253      };
+      254 +    9FB1189B2F2F250000BE6CDE /* GitHubSearchTests */ = {      
+      255 +      isa = PBXNativeTarget;                                  
+      256 +      buildConfigurationList = 9FB118A72F2F250000BE6CDE /* Bui
+          +ld configuration list for PBXNativeTarget "GitHubSearchTests" 
+          +*/;                                                           
+      257 +      buildPhases = (                                         
+      258 +        9FB118982F2F250000BE6CDE /* Sources */,               
+      259 +        9FB118992F2F250000BE6CDE /* Frameworks */,            
+      260 +        9FB1189A2F2F250000BE6CDE /* Resources */,             
+      261 +      );                                                      
+      262 +      buildRules = (                                          
+      263 +      );                                                      
+      264 +      dependencies = (                                        
+      265 +        9FB118A52F2F250000BE6CDE /* PBXTargetDependency */,   
+      266 +      );                                                      
+      267 +      name = GitHubSearchTests;                               
+      268 +      productName = GitHubSearchTests;                        
+      269 +      productReference = 9FB1189C2F2F250000BE6CDE /* GitHubSea
+          +rchTests.xctest */;                                           
+      270 +      productType = "com.apple.product-type.bundle.unit-test";
+      271 +    };                                                        
+      272  /* End PBXNativeTarget section */
+      273  
+      274  /* Begin PBXProject section */
+
+⏺ Update(GitHubSearch.xcodeproj/project.pbxproj)
+  ⎿  Added 4 lines
+      282            9FB118162F2F10ED00BE6CDE = {
+      283              CreatedOnToolsVersion = 16.3;
+      284            };
+      285 +          9FB1189B2F2F250000BE6CDE = {                        
+      286 +            CreatedOnToolsVersion = 16.3;                     
+      287 +            TestTargetID = 9FB118162F2F10ED00BE6CDE;          
+      288 +          };                                                  
+      289          };
+      290        };
+      291        buildConfigurationList = 9FB118122F2F10ED00BE6CDE /* Bui
+           ld configuration list for PBXProject "GitHubSearch" */;
+
+⏺ Update(GitHubSearch.xcodeproj/project.pbxproj)
+  ⎿  Added 1 line
+      306        projectRoot = "";
+      307        targets = (
+      308          9FB118162F2F10ED00BE6CDE /* GitHubSearch */,
+      309 +        9FB1189B2F2F250000BE6CDE /* GitHubSearchTests */,     
+      310        );
+      311      };
+      312  /* End PBXProject section */
+
+⏺ Update(GitHubSearch.xcodeproj/project.pbxproj)
+  ⎿  Added 7 lines
+      322        );
+      323        runOnlyForDeploymentPostprocessing = 0;
+      324      };
+      325 +    9FB1189A2F2F250000BE6CDE /* Resources */ = {              
+      326 +      isa = PBXResourcesBuildPhase;                           
+      327 +      buildActionMask = 2147483647;                           
+      328 +      files = (                                               
+      329 +      );                                                      
+      330 +      runOnlyForDeploymentPostprocessing = 0;                 
+      331 +    };                                                        
+      332  /* End PBXResourcesBuildPhase section */
+      333  
+      334  /* Begin PBXSourcesBuildPhase section */
+
+⏺ Update(GitHubSearch.xcodeproj/project.pbxproj)
+  ⎿  Added 9 lines
+      352        );
+      353        runOnlyForDeploymentPostprocessing = 0;
+      354      };
+      355 +    9FB118982F2F250000BE6CDE /* Sources */ = {                
+      356 +      isa = PBXSourcesBuildPhase;                             
+      357 +      buildActionMask = 2147483647;                           
+      358 +      files = (                                               
+      359 +        9FB118A02F2F250000BE6CDE /* SearchViewModelTests.swift
+          + in Sources */,                                               
+      360 +        9FB118A12F2F250000BE6CDE /* SearchViewControllerTests.
+          +swift in Sources */,                                          
+      361 +      );                                                      
+      362 +      runOnlyForDeploymentPostprocessing = 0;                 
+      363 +    };                                                        
+      364  /* End PBXSourcesBuildPhase section */
+      365  
+      366  /* Begin PBXVariantGroup section */
+
+⏺ Update(GitHubSearch.xcodeproj/project.pbxproj)
+  ⎿  Added 8 lines
+      363      };
+      364  /* End PBXSourcesBuildPhase section */
+      365  
+      366 +/* Begin PBXTargetDependency section */                       
+      367 +    9FB118A52F2F250000BE6CDE /* PBXTargetDependency */ = {    
+      368 +      isa = PBXTargetDependency;                              
+      369 +      target = 9FB118162F2F10ED00BE6CDE /* GitHubSearch */;   
+      370 +      targetProxy = 9FB118A42F2F250000BE6CDE /* PBXContainerIt
+          +emProxy */;                                                   
+      371 +    };                                                        
+      372 +/* End PBXTargetDependency section */                         
+      373 +                                                              
+      374  /* Begin PBXVariantGroup section */
+      375      9FB118332F2F10F300BE6CDE /* LaunchScreen.storyboard */ = {
+      376        isa = PBXVariantGroup;
+
+⏺ Update(GitHubSearch.xcodeproj/project.pbxproj)
+  ⎿  Added 36 lines
+      564        };
+      565        name = Release;
+      566      };
+      567 +    9FB118A82F2F250000BE6CDE /* Debug */ = {                  
+      568 +      isa = XCBuildConfiguration;                             
+      569 +      buildSettings = {                                       
+      570 +        BUNDLE_LOADER = "$(TEST_HOST)";                       
+      571 +        CODE_SIGN_STYLE = Automatic;                          
+      572 +        CURRENT_PROJECT_VERSION = 1;                          
+      573 +        GENERATE_INFOPLIST_FILE = YES;                        
+      574 +        IPHONEOS_DEPLOYMENT_TARGET = 15.6;                    
+      575 +        MARKETING_VERSION = 1.0;                              
+      576 +        PRODUCT_BUNDLE_IDENTIFIER = com.allen.GitHubSearchTest
+          +s;                                                            
+      577 +        PRODUCT_NAME = "$(TARGET_NAME)";                      
+      578 +        SWIFT_EMIT_LOC_STRINGS = NO;                          
+      579 +        SWIFT_VERSION = 5.0;                                  
+      580 +        TARGETED_DEVICE_FAMILY = "1,2";                       
+      581 +        TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GitHubSearch.app/$(
+          +BUNDLE_EXECUTABLE_FOLDER_PATH)/GitHubSearch";                 
+      582 +      };                                                      
+      583 +      name = Debug;                                           
+      584 +    };                                                        
+      585 +    9FB118A92F2F250000BE6CDE /* Release */ = {                
+      586 +      isa = XCBuildConfiguration;                             
+      587 +      buildSettings = {                                       
+      588 +        BUNDLE_LOADER = "$(TEST_HOST)";                       
+      589 +        CODE_SIGN_STYLE = Automatic;                          
+      590 +        CURRENT_PROJECT_VERSION = 1;                          
+      591 +        GENERATE_INFOPLIST_FILE = YES;                        
+      592 +        IPHONEOS_DEPLOYMENT_TARGET = 15.6;                    
+      593 +        MARKETING_VERSION = 1.0;                              
+      594 +        PRODUCT_BUNDLE_IDENTIFIER = com.allen.GitHubSearchTest
+          +s;                                                            
+      595 +        PRODUCT_NAME = "$(TARGET_NAME)";                      
+      596 +        SWIFT_EMIT_LOC_STRINGS = NO;                          
+      597 +        SWIFT_VERSION = 5.0;                                  
+      598 +        TARGETED_DEVICE_FAMILY = "1,2";                       
+      599 +        TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GitHubSearch.app/$(
+          +BUNDLE_EXECUTABLE_FOLDER_PATH)/GitHubSearch";                 
+      600 +      };                                                      
+      601 +      name = Release;                                         
+      602 +    };                                                        
+      603  /* End XCBuildConfiguration section */
+      604  
+      605  /* Begin XCConfigurationList section */
+
+⏺ Update(GitHubSearch.xcodeproj/project.pbxproj)
+  ⎿  Added 9 lines
+      621        defaultConfigurationIsVisible = 0;
+      622        defaultConfigurationName = Release;
+      623      };
+      624 +    9FB118A72F2F250000BE6CDE /* Build configuration list for P
+          +BXNativeTarget "GitHubSearchTests" */ = {                     
+      625 +      isa = XCConfigurationList;                              
+      626 +      buildConfigurations = (                                 
+      627 +        9FB118A82F2F250000BE6CDE /* Debug */,                 
+      628 +        9FB118A92F2F250000BE6CDE /* Release */,               
+      629 +      );                                                      
+      630 +      defaultConfigurationIsVisible = 0;                      
+      631 +      defaultConfigurationName = Release;                     
+      632 +    };                                                        
+      633  /* End XCConfigurationList section */
+      634  
+      635  /* Begin XCRemoteSwiftPackageReference section */
+
+⏺ 테스트를 실행합니다.
+
+⏺ Bash(xcodebuild test -project GitHubSearch.xcodeproj -scheme GitHubSearch
+      -destination 'platform=iOS Simulator,name=iPhone 16' 2>&1 | grep -E "(Test
+       Case|passed|fail…)
+  ⎿  Testing failed:
+  ⎿  (timeout 3m)
+
+⏺ 테스트 실패 상세 내용을 확인합니다.
+
+⏺ Bash(xcodebuild test -project GitHubSearch.xcodeproj -scheme GitHubSearch
+      -destination 'platform=iOS Simulator,name=iPhone 16' 2>&1 | tail -80)
+  ⎿  Resolved source packages:
+       SnapKit: https://github.com/SnapKit/SnapKit @ 5.7.1
+     … +127 lines (ctrl+o to expand)
+  ⎿  (timeout 3m)
+
+⏺ 시뮬레이터 문제입니다. 다른 시뮬레이터로 테스트합니다.
+
+⏺ Bash(xcrun simctl list devices available | grep -E "iPhone|iPad" | head -10)
+  ⎿      iPhone 12 mini (D98BC263-72BD-4E86-9406-7BB6E07F0E38) (Shutdown)
+         iPhone 16 Pro (A7F55C21-3D10-4BDD-9328-10ED094957A3) (Booted)
+         iPhone 16 (5732A2DF-B3ED-4D3B-93EA-29AFE74DD787) (Shutdown)
+     … +3 lines (ctrl+o to expand)
+
+⏺ Bash(xcodebuild test -project GitHubSearch.xcodeproj -scheme GitHubSearch
+      -destination 'platform=iOS Simulator,name=iPhone 16 Pro' 2>&1 | grep -E
+      "(Test Case|passed|…)
+  ⎿  Testing failed:
+  ⎿  (timeout 3m)
+
+⏺ Bash(xcodebuild test -project GitHubSearch.xcodeproj -scheme GitHubSearch
+      -destination 'platform=iOS
+      Simulator,id=A7F55C21-3D10-4BDD-9328-10ED094957A3' 2>&1 | tail -…)
+  ⎿   SnapKit: https://github.com/SnapKit/SnapKit @ 5.7.1
+
+    --- xcodebuild: WARNING: Using the first of multiple matching destinati
+    … +71 lines (ctrl+o to expand)
+
+  ⎿  (timeout 3m)
+
+⏺ 시뮬레이터 문제를 해결합니다.
+
+⏺ Bash(xcrun simctl shutdown all && sleep 2 && xcrun simctl boot "iPhone 16 Pro"
+       && sleep 3)
+  ⎿  (No content)
+  ⎿  (timeout 30s)
+
+⏺ Bash(xcodebuild test -project GitHubSearch.xcodeproj -scheme GitHubSearch
+      -destination 'platform=iOS Simulator,name=iPhone 16 Pro'
+      -only-testing:GitHubSearchTests 2>…)
+  ⎿  Testing failed:
+  ⎿  (timeout 3m)
+
+⏺ 테스트 빌드만 먼저 확인합니다.
+
+⏺ Bash(xcodebuild build-for-testing -project GitHubSearch.xcodeproj -scheme
+      GitHubSearch -destination 'generic/platform=iOS Simulator' 2>&1 | grep -E
+      "(BUILD|error:|wa…)
+  ⎿  ** TEST BUILD SUCCEEDED **
+  ⎿  (timeout 2m)
+
+⏺ 테스트 빌드 성공. 시뮬레이터 환경 문제로 CLI 테스트 실행이 어려운 상황입니다.
+  Xcode GUI에서 테스트를 실행합니다.
+
+⏺ Bash(osascript <<'EOF'
+      tell application "Xcode" to activate…)
+  ⎿  (No content)
+
+⏺ Xcode에서 테스트가 실행됩니다 (Cmd+U). 테스트 결과를 확인해주세요.
+
+  ---
+  작성된 테스트 코드 요약
+
+  SearchViewModelTests.swift
+  테스트 메서드: test_검색어가_빈문자열이면_콜백이_호출되지_않는다
+  검증 내용: 빈 문자열 처리
+  ────────────────────────────────────────
+  테스트 메서드: test_검색어가_공백만_있으면_콜백이_호출되지_않는다
+  검증 내용: 공백 문자열 처리
+  ────────────────────────────────────────
+  테스트 메서드: test_검색어가_탭과_공백만_있으면_콜백이_호출되지_않는다
+  검증 내용: 탭+공백 처리
+  ────────────────────────────────────────
+  테스트 메서드: test_유효한_검색어로_검색하면_onSearchResult_콜백이_호출된다
+  검증 내용: 정상 콜백 호출
+  ────────────────────────────────────────
+  테스트 메서드: test_검색어_앞뒤_공백이_제거되어_콜백에_전달된다
+  검증 내용: 트리밍 동작
+  ────────────────────────────────────────
+  테스트 메서드: test_한글_검색어도_정상적으로_콜백이_호출된다
+  검증 내용: 한글 지원
+  ────────────────────────────────────────
+  테스트 메서드: test_onSearchResult_콜백이_nil이어도_크래시가_발생하지_않는다
+  검증 내용: nil 안전성
+  SearchViewControllerTests.swift
+  테스트 메서드: test_뷰가_로드되면_tableView가_존재한다
+  검증 내용: tableView 존재
+  ────────────────────────────────────────
+  테스트 메서드: test_tableView가_올바른_delegate를_가진다
+  검증 내용: delegate 설정
+  ────────────────────────────────────────
+  테스트 메서드: test_tableView가_올바른_dataSource를_가진다
+  검증 내용: dataSource 설정
+  ────────────────────────────────────────
+  테스트 메서드: test_navigationItem에_searchController가_설정되어_있다
+  검증 내용: searchController 존재
+  ────────────────────────────────────────
+  테스트 메서드: test_searchController의_placeholder가_올바르게_설정되어_있다
+  검증 내용: placeholder 텍스트
+  ────────────────────────────────────────
+  테스트 메서드: test_searchController가_배경을_흐리게_하지_않는다
+  검증 내용: obscuresBackground 설정
+  ────────────────────────────────────────
+  테스트 메서드: test_타이틀이_GitHub_Search로_설정되어_있다
+  검증 내용: 타이틀 설정
+  ────────────────────────────────────────
+  테스트 메서드: test_초기_상태에서_tableView_행이_0개이다
+  검증 내용: 초기 상태
+  ────────────────────────────────────────
+  테스트 메서드: test_뷰_배경색이_systemBackground이다
+  검증 내용: 배경색 설정
+  ---
+  Xcode에서 테스트 결과를 확인하신 후 커밋 진행 여부를 알려주세요.
+
+✻ Brewed for 5m 43s
+
+❯ 테스트 통과했어 task 단위로 커밋해줘.  
+  ⎿  [Image #1]
+
+⏺ 테스트 16개 모두 통과했네요. Task 단위로 커밋합니다.
+
+⏺ Bash(git status)
+  ⎿  On branch main
+     Changes not staged for commit:
+       (use "git add <file>..." to update what will be committed)
+     … +16 lines (ctrl+o to expand)
+
+⏺ Task 1: SearchViewModelTests 추가
+
+⏺ Bash(git add GitHubSearchTests/SearchViewModelTests.swift && git commit -m
+      "test(viewmodel): SearchViewModel 테스트 추가…)
+  ⎿  [main 8bbc9c2] test(viewmodel): SearchViewModel 테스트 추가
+      1 file changed, 129 insertions(+)
+      create mode 100644 GitHubSearchTests/SearchViewModelTests.swift
+
+⏺ Task 2: SearchViewControllerTests 추가
+
+⏺ Bash(git add GitHubSearchTests/SearchViewControllerTests.swift && git commit
+      -m "test(viewcontroller): SearchViewController 테스트 추가…)
+  ⎿  [main 0e386f6] test(viewcontroller): SearchViewController 테스트 추가
+      1 file changed, 101 insertions(+)
+      create mode 100644 GitHubSearchTests/SearchViewControllerTests.swift
+
+⏺ Task 3: 테스트 타겟 설정 추가
+
+⏺ Bash(git add GitHubSearch.xcodeproj/project.pbxproj && git commit -m
+      "chore(project): GitHubSearchTests 타겟 추가…)
+  ⎿  [main 79893b9] chore(project): GitHubSearchTests 타겟 추가
+      1 file changed, 125 insertions(+)
+
+⏺ Bash(git log --oneline -6)
+  ⎿  79893b9 chore(project): GitHubSearchTests 타겟 추가
+     0e386f6 test(viewcontroller): SearchViewController 테스트 추가
+     8bbc9c2 test(viewmodel): SearchViewModel 테스트 추가
+     … +3 lines (ctrl+o to expand)
+
+⏺ ---
+  테스트 커밋 완료
+  ┌─────────┬──────┬───────────────────────────────────┐
+  │  커밋   │ Task │               설명                │
+  ├─────────┼──────┼───────────────────────────────────┤
+  │ 8bbc9c2 │ 1    │ SearchViewModel 테스트 (7개)      │
+  ├─────────┼──────┼───────────────────────────────────┤
+  │ 0e386f6 │ 2    │ SearchViewController 테스트 (9개) │
+  ├─────────┼──────┼───────────────────────────────────┤
+  │ 79893b9 │ 3    │ 테스트 타겟 설정                  │
+  └─────────┴──────┴───────────────────────────────────┘
+  전체 커밋 히스토리 (Issue #4)
+
+  79893b9 chore(project): GitHubSearchTests 타겟 추가
+  0e386f6 test(viewcontroller): SearchViewController 테스트 추가
+  8bbc9c2 test(viewmodel): SearchViewModel 테스트 추가
+  d52d25b refactor(app): Storyboard 제거 및 코드 기반 UI 전환
+  5ccb9ca feat(presentation): SearchViewController 생성 및 검색 실행 연결
+  89927d4 feat(presentation): SearchViewModel 생성
+
+  ---
+  다음 Issue #5 (최근 검색어) 구현을 진행할까요?
+
+✻ Crunched for 54s
+
+❯ sentinel 로 저장해줘.  
+
+⏺ 현재 세션 상태를 Sentinel 파일로 저장합니다.
+
+⏺ Bash(git log -1 --format="%h" && git branch --show-current)
+  ⎿  79893b9
+     main
+
+⏺ Write(docs/ai-dev/sentinel-2026-02-01-192800.md)
+  ⎿  Wrote 187 lines to docs/ai-dev/sentinel-2026-02-01-192800.md
+      1 # Sentinel: GitHubSearch Session
+      2 
+      3 **Session ID**: sentinel-2026-02-01-192800
+      4 **저장 시간**: 2026-02-01 19:28:00
+      5 **프로젝트**: GitHubSearch
+      6 
+      7 ---
+      8 
+      9 ## 현재 진행 상태
+     … +177 lines (ctrl+o to expand)
+
+⏺ ---
+  Sentinel 저장 완료
+
+  Session ID: sentinel-2026-02-01-192800
+  프로젝트: GitHubSearch
+
+  현재 상태
+
+  - Phase: impl (5/9)
+  - 완료: Phase 0, Issue #4 (테스트 포함)
+  - 다음: Issue #5 (최근 검색어)
+  - 테스트: 16개 All Passed
+
+  Git 상태
+
+  - Branch: main
+  - Last Commit: 79893b9
+  - Uncommitted: 없음
+
+  복원 명령어
+
+  /ai-dev.sentinel restore sentinel-2026-02-01-192800
+
+  저장 경로: docs/ai-dev/sentinel-2026-02-01-192800.md
+
+✻ Cooked for 43s
