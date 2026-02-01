@@ -7,6 +7,8 @@ final class SearchViewControllerTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        // 테스트 전 최근 검색어 초기화
+        UserDefaults.standard.removeObject(forKey: "recent_searches")
         sut = SearchViewController()
         sut.loadViewIfNeeded()
     }
