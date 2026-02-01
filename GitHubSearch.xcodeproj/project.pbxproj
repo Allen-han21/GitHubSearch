@@ -17,6 +17,12 @@
 		9FB118672F2F210700BE6CDE /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB118642F2F210400BE6CDE /* Repository.swift */; };
 		9FB118682F2F210800BE6CDE /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB118652F2F210500BE6CDE /* SearchResult.swift */; };
 		9FB118692F2F210900BE6CDE /* RecentSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB118662F2F210600BE6CDE /* RecentSearch.swift */; };
+		9FB118732F2F220300BE6CDE /* NetworkServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB118702F2F220000BE6CDE /* NetworkServiceProtocol.swift */; };
+		9FB118742F2F220400BE6CDE /* SearchRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB118712F2F220100BE6CDE /* SearchRepositoryProtocol.swift */; };
+		9FB118752F2F220500BE6CDE /* RecentSearchRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB118722F2F220200BE6CDE /* RecentSearchRepositoryProtocol.swift */; };
+		9FB118832F2F230300BE6CDE /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB118802F2F230000BE6CDE /* Endpoint.swift */; };
+		9FB118842F2F230400BE6CDE /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB118812F2F230100BE6CDE /* NetworkError.swift */; };
+		9FB118852F2F230500BE6CDE /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB118822F2F230200BE6CDE /* NetworkService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +37,12 @@
 		9FB118642F2F210400BE6CDE /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		9FB118652F2F210500BE6CDE /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		9FB118662F2F210600BE6CDE /* RecentSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearch.swift; sourceTree = "<group>"; };
+		9FB118702F2F220000BE6CDE /* NetworkServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceProtocol.swift; sourceTree = "<group>"; };
+		9FB118712F2F220100BE6CDE /* SearchRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepositoryProtocol.swift; sourceTree = "<group>"; };
+		9FB118722F2F220200BE6CDE /* RecentSearchRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchRepositoryProtocol.swift; sourceTree = "<group>"; };
+		9FB118802F2F230000BE6CDE /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		9FB118812F2F230100BE6CDE /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		9FB118822F2F230200BE6CDE /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +136,9 @@
 		9FB118622F2F210200BE6CDE /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				9FB118702F2F220000BE6CDE /* NetworkServiceProtocol.swift */,
+				9FB118712F2F220100BE6CDE /* SearchRepositoryProtocol.swift */,
+				9FB118722F2F220200BE6CDE /* RecentSearchRepositoryProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -148,6 +163,9 @@
 		9FB1186B2F2F210B00BE6CDE /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				9FB118802F2F230000BE6CDE /* Endpoint.swift */,
+				9FB118812F2F230100BE6CDE /* NetworkError.swift */,
+				9FB118822F2F230200BE6CDE /* NetworkService.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -250,6 +268,12 @@
 				9FB118672F2F210700BE6CDE /* Repository.swift in Sources */,
 				9FB118682F2F210800BE6CDE /* SearchResult.swift in Sources */,
 				9FB118692F2F210900BE6CDE /* RecentSearch.swift in Sources */,
+				9FB118732F2F220300BE6CDE /* NetworkServiceProtocol.swift in Sources */,
+				9FB118742F2F220400BE6CDE /* SearchRepositoryProtocol.swift in Sources */,
+				9FB118752F2F220500BE6CDE /* RecentSearchRepositoryProtocol.swift in Sources */,
+				9FB118832F2F230300BE6CDE /* Endpoint.swift in Sources */,
+				9FB118842F2F230400BE6CDE /* NetworkError.swift in Sources */,
+				9FB118852F2F230500BE6CDE /* NetworkService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
