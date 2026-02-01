@@ -145,14 +145,8 @@ final class SearchViewController: UIViewController {
     // MARK: - Navigation
 
     private func navigateToSearchResult(with query: String) {
-        // Issue #6에서 SearchResultViewController로 이동 구현 예정
-        let alert = UIAlertController(
-            title: "검색 실행",
-            message: "'\(query)' 검색 결과 화면으로 이동합니다.",
-            preferredStyle: .alert
-        )
-        alert.addAction(UIAlertAction(title: "확인", style: .default))
-        present(alert, animated: true)
+        let searchResultVC = SearchResultViewController(query: query)
+        navigationController?.pushViewController(searchResultVC, animated: true)
     }
 
     private func showErrorAlert(_ error: Error) {

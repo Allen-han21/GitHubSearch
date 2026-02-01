@@ -1,0 +1,829 @@
+
+ ▐▛███▜▌   Claude Code v2.1.29
+▝▜█████▛▘  Opus 4.5 · Claude Max
+  ▘▘ ▝▝    ~/Dev/Repo/GitHubSearch
+
+❯ /ai-dev.sentinel restore sentinel-2026-02-01-192800
+  저장 경로: docs/ai-dev/sentinel-2026-02-01-192800.md 
+
+⏺ Sentinel 파일을 복원하겠습니다.
+
+⏺ Read 1 file (ctrl+o to expand)
+
+⏺ 복원된 상태를 확인하고 필요한 파일들을 읽어오겠습니다.
+
+⏺ Read 1 file (ctrl+o to expand)
+
+⏺ Task Chain을 복원하고 현재 상태를 정리하겠습니다.
+
+⏺ Sentinel 복원 완료
+
+  Session ID: sentinel-2026-02-01-192800
+  저장 시점: 2026-02-01 19:28:00
+
+  ---
+  복원된 상태
+  ┌─────────────┬──────────────────────────────────┐
+  │    항목     │               상태               │
+  ├─────────────┼──────────────────────────────────┤
+  │ 현재 Phase  │ impl (5/9)                       │
+  ├─────────────┼──────────────────────────────────┤
+  │ 완료된 작업 │ Phase 0 + Issue #4 (테스트 포함) │
+  ├─────────────┼──────────────────────────────────┤
+  │ 다음 작업   │ Issue #5: 최근 검색어            │
+  └─────────────┴──────────────────────────────────┘
+  완료된 구현
+
+  - ✅ Phase 0: 프로젝트 기반 (SnapKit, 폴더 구조, Entity, Protocol, Network)
+  - ✅ Issue #4: 검색 화면 기본 UI + 테스트 16개
+
+  Task Chain 복원됨
+  ┌─────┬────────────────────────────┬─────────┬────────┐
+  │  #  │            Task            │  상태   │ 의존성 │
+  ├─────┼────────────────────────────┼─────────┼────────┤
+  │ 1   │ Issue #5: 최근 검색어      │ pending │ -      │
+  ├─────┼────────────────────────────┼─────────┼────────┤
+  │ 2   │ Issue #6: 검색 결과 리스트 │ blocked │ #1     │
+  ├─────┼────────────────────────────┼─────────┼────────┤
+  │ 3   │ Issue #7: WebView          │ blocked │ #2     │
+  ├─────┼────────────────────────────┼─────────┼────────┤
+  │ 4   │ Issue #8: 페이지네이션     │ blocked │ #2     │
+  ├─────┼────────────────────────────┼─────────┼────────┤
+  │ 5   │ Issue #9: 자동완성         │ blocked │ #1     │
+  └─────┴────────────────────────────┴─────────┴────────┘
+  핵심 기술 스택
+
+  - Clean Architecture + MVVM
+  - UIKit + SnapKit
+  - URLSession (async/await)
+  - XCTest (한글 테스트 함수명)
+
+  ---
+  다음 단계
+
+  Issue #5: 최근 검색어 (Task 5.1~5.6)
+  1. RecentSearchStorage 구현
+  2. RecentSearchRepository 구현
+  3. RecentSearchUseCase 구현
+  4. RecentSearchCell 구현
+  5. SearchViewController 통합
+  6. 날짜 포맷 유틸리티
+
+  ---
+  복원이 완료되었습니다. Issue #5 구현을 시작할까요?
+
+✻ Cogitated for 41s
+
+❯ Issue #5 구현 시작해줘, task 단위 커밋 
+
+⏺ Issue #5 구현을 시작하겠습니다. 먼저 기존 코드 패턴을 확인하겠습니다.
+
+⏺ Read 4 files (ctrl+o to expand)
+
+⏺ 기존 코드 패턴을 확인했습니다. Task 5.1부터 순서대로 구현하겠습니다.
+
+  Task 5.1: RecentSearchStorage 구현
+
+⏺ Write(GitHubSearch/Data/Storage/RecentSearchStorage.swift)
+  ⎿  Wrote 74 lines to GitHubSearch/Data/Storage/RecentSearchStorage.swift
+       1 import Foundation
+       2 
+       3 final class RecentSearchStorage {
+       4 
+       5     // MARK: - Constants
+       6 
+       7     private let key = "recent_searches"
+       8     private let maxCount = 10
+       9 
+      10     // MARK: - Properties
+     … +64 lines (ctrl+o to expand)
+
+⏺ Bash(xcodebuild -project GitHubSearch.xcodeproj -scheme GitHubSearch
+      -destination 'platform=iOS Simulator,name=iPhone 16' build 2>&1 | tail
+      -20)
+  ⎿     /usr/bin/codesign --force --sign - --timestamp\=none --generate-ent
+    itlement-der /Users/allen/Library/Developer/Xcode/DerivedData/GitHubSea
+    rch-banjopcdtpnemvddzgwmjrixwqwn/Build/Products/Debug-iphonesimulator/G
+    … +34 lines (ctrl+o to expand)
+
+
+
+  ⎿  (timeout 2m)
+  ⎿  Found 5 new diagnostic issues in 1 file (ctrl+o to expand)
+
+⏺ 빌드 성공. Task 5.1 커밋하겠습니다.
+
+⏺ Bash(git add GitHubSearch/Data/Storage/RecentSearchStorage.swift && git commit
+       -m "feat(storage): RecentSearchStorage 구현…)
+  ⎿ [main 5cd3ab3] feat(storage): RecentSearchStorage 구현
+     1 file changed, 73 insertions(+)
+     create mode 100644 GitHubSearch/Data/Storage/RecentSearchStorage.swift
+
+
+⏺ Task 5.2: RecentSearchRepository 구현
+
+⏺ Write(GitHubSearch/Data/Repositories/RecentSearchRepository.swift)
+  ⎿  Wrote 33 lines to
+     GitHubSearch/Data/Repositories/RecentSearchRepository.swift
+      1 import Foundation
+      2 
+      3 final class RecentSearchRepository: RecentSearchRepositoryProtoco
+        l {
+      4 
+      5     // MARK: - Properties
+      6 
+      7     private let storage: RecentSearchStorage
+      8 
+      9     // MARK: - Initialization
+     … +23 lines (ctrl+o to expand)
+
+⏺ Bash(xcodebuild -project GitHubSearch.xcodeproj -scheme GitHubSearch
+      -destination 'platform=iOS Simulator,name=iPhone 16' build 2>&1 | grep -E
+      "(BUILD|error:|warning…)
+  ⎿  ** BUILD SUCCEEDED **
+  ⎿  Found 4 new diagnostic issues in 1 file (ctrl+o to expand)
+
+⏺ Bash(git add GitHubSearch/Data/Repositories/RecentSearchRepository.swift &&
+      git commit -m "feat(repository): RecentSearchRepository 구현…)
+  ⎿ [main dd8bc7f] feat(repository): RecentSearchRepository 구현
+     1 file changed, 32 insertions(+)
+     create mode 100644 GitHubSearch/Data/Repositories/RecentSearchReposito
+    ry.swift
+
+
+⏺ Task 5.3: RecentSearchUseCase 구현
+
+⏺ Write(GitHubSearch/Domain/UseCases/RecentSearchUseCase.swift)
+  ⎿  Wrote 42 lines to
+     GitHubSearch/Domain/UseCases/RecentSearchUseCase.swift
+       1 import Foundation
+       2 
+       3 protocol RecentSearchUseCaseProtocol {
+       4     func getRecentSearches() -> [RecentSearch]
+       5     func saveSearch(_ query: String)
+       6     func deleteSearch(_ query: String)
+       7     func deleteAllSearches()
+       8 }
+       9 
+      10 final class RecentSearchUseCase: RecentSearchUseCaseProtocol {
+     … +32 lines (ctrl+o to expand)
+
+⏺ Bash(xcodebuild -project GitHubSearch.xcodeproj -scheme GitHubSearch
+      -destination 'platform=iOS Simulator,name=iPhone 16' build 2>&1 | grep -E
+      "(BUILD|error:)" | tai…)
+  ⎿  ** BUILD SUCCEEDED **
+  ⎿  Found 4 new diagnostic issues in 1 file (ctrl+o to expand)
+
+⏺ Bash(git add GitHubSearch/Domain/UseCases/RecentSearchUseCase.swift && git
+      commit -m "feat(usecase): RecentSearchUseCase 구현…)
+  ⎿ [main f0e9af6] feat(usecase): RecentSearchUseCase 구현
+     1 file changed, 41 insertions(+)
+     create mode 100644 GitHubSearch/Domain/UseCases/RecentSearchUseCase.sw
+    ift
+
+
+⏺ Task 5.4: RecentSearchCell 구현
+
+⏺ Write(GitHubSearch/Presentation/Search/RecentSearchCell.swift)
+  ⎿  Wrote 117 lines to
+     GitHubSearch/Presentation/Search/RecentSearchCell.swift
+       1 import UIKit
+       2 import SnapKit
+       3 
+       4 final class RecentSearchCell: UITableViewCell {
+       5 
+       6     // MARK: - Constants
+       7 
+       8     static let reuseIdentifier = "RecentSearchCell"
+       9 
+      10     // MARK: - UI Components
+     … +107 lines (ctrl+o to expand)
+
+⏺ Task 5.6: 날짜 포맷 유틸리티 (5.4와 함께 필요)
+
+⏺ Write(GitHubSearch/Presentation/Common/RelativeDateFormatter.swift)
+  ⎿  Wrote 34 lines to
+     GitHubSearch/Presentation/Common/RelativeDateFormatter.swift
+       1 import Foundation
+       2 
+       3 extension Date {
+       4 
+       5     var relativeString: String {
+       6         let now = Date()
+       7         let interval = now.timeIntervalSince(self)
+       8 
+       9         // 미래 시간 처리
+      10         if interval < 0 {
+     … +24 lines (ctrl+o to expand)
+  ⎿  Found 1 new diagnostic issue in 1 file (ctrl+o to expand)
+
+⏺ Bash(xcodebuild -project GitHubSearch.xcodeproj -scheme GitHubSearch
+      -destination 'platform=iOS Simulator,name=iPhone 16' build 2>&1 | grep -E
+      "(BUILD|error:)" | tai…)
+  ⎿  ** BUILD SUCCEEDED **
+
+⏺ Bash(git add GitHubSearch/Presentation/Search/RecentSearchCell.swift && git
+      commit -m "feat(cell): RecentSearchCell 구현…)
+  ⎿ [main 11cf63b] feat(cell): RecentSearchCell 구현
+     1 file changed, 116 insertions(+)
+     create mode 100644 GitHubSearch/Presentation/Search/RecentSearchCell.s
+    wift
+
+
+⏺ Bash(git add GitHubSearch/Presentation/Common/RelativeDateFormatter.swift &&
+      git commit -m "feat(util): Date.relativeString 확장 구현…)
+  ⎿ [main b352027] feat(util): Date.relativeString 확장 구현
+     1 file changed, 33 insertions(+)
+     create mode 100644 GitHubSearch/Presentation/Common/RelativeDateFormat
+    ter.swift
+
+
+⏺ Task 5.5: SearchViewController 최근 검색어 통합
+
+  먼저 SearchViewModel을 수정하겠습니다.
+
+⏺ Read 1 file (ctrl+o to expand)
+
+⏺ Write(GitHubSearch/Presentation/Search/SearchViewModel.swift)
+  ⎿  Added 35 lines, removed 2 lines
+       6  
+       7      var onSearchResult: ((String) -> Void)?
+       8      var onError: ((Error) -> Void)?
+       9 +    var onRecentSearchesUpdated: (() -> Void)?                 
+      10  
+      11      // MARK: - Properties
+      12  
+      13      private let searchRepository: SearchRepositoryProtocol?
+      14 +    private let recentSearchUseCase: RecentSearchUseCaseProtoco
+         +l                                                              
+      15  
+      16 +    private(set) var recentSearches: [RecentSearch] = []       
+      17 +                                                               
+      18      // MARK: - Initialization
+      19  
+      16 -    init(searchRepository: SearchRepositoryProtocol? = nil) {  
+      20 +    init(                                                      
+      21 +        searchRepository: SearchRepositoryProtocol? = nil,     
+      22 +        recentSearchUseCase: RecentSearchUseCaseProtocol = Rece
+         +ntSearchUseCase(                                               
+      23 +            repository: RecentSearchRepository()               
+      24 +        )                                                      
+      25 +    ) {                                                        
+      26          self.searchRepository = searchRepository
+      27 +        self.recentSearchUseCase = recentSearchUseCase         
+      28      }
+      29  
+      30      // MARK: - Input Methods
+      31  
+      32 +    func loadRecentSearches() {                                
+      33 +        recentSearches = recentSearchUseCase.getRecentSearches(
+         +)                                                              
+      34 +        onRecentSearchesUpdated?()                             
+      35 +    }                                                          
+      36 +                                                               
+      37      func search(query: String) {
+      38          let trimmedQuery = query.trimmingCharacters(in: .whites
+          paces)
+      39          guard !trimmedQuery.isEmpty else { return }
+      40  
+      26 -        // Issue #5에서 최근 검색어 저장 로직 추가 예정        
+      41 +        recentSearchUseCase.saveSearch(trimmedQuery)           
+      42 +        loadRecentSearches()                                   
+      43          onSearchResult?(trimmedQuery)
+      44      }
+      45 +                                                               
+      46 +    func deleteRecentSearch(at index: Int) {                   
+      47 +        guard index < recentSearches.count else { return }     
+      48 +        let query = recentSearches[index].query                
+      49 +        recentSearchUseCase.deleteSearch(query)                
+      50 +        loadRecentSearches()                                   
+      51 +    }                                                          
+      52 +                                                               
+      53 +    func deleteAllRecentSearches() {                           
+      54 +        recentSearchUseCase.deleteAllSearches()                
+      55 +        loadRecentSearches()                                   
+      56 +    }                                                          
+      57 +                                                               
+      58 +    func recentSearch(at index: Int) -> RecentSearch? {        
+      59 +        guard index < recentSearches.count else { return nil } 
+      60 +        return recentSearches[index]                           
+      61 +    }                                                          
+      62  }
+
+⏺ 이제 SearchViewController를 수정하겠습니다.
+
+⏺ Write(GitHubSearch/Presentation/Search/SearchViewController.swift)
+  ⎿  Added 87 lines, removed 4 lines
+       8      private let searchController = UISearchController(searchRes
+          ultsController: nil)
+       9      private let tableView = UITableView(frame: .zero, style: .p
+          lain)
+      10  
+      11 +    private lazy var headerView: UIView = {                    
+      12 +        let view = UIView()                                    
+      13 +        view.backgroundColor = .systemBackground               
+      14 +                                                               
+      15 +        let titleLabel = UILabel()                             
+      16 +        titleLabel.text = "최근 검색"                          
+      17 +        titleLabel.font = .systemFont(ofSize: 15, weight: .semi
+         +bold)                                                          
+      18 +        titleLabel.textColor = .label                          
+      19 +                                                               
+      20 +        let clearButton = UIButton(type: .system)              
+      21 +        clearButton.setTitle("전체 삭제", for: .normal)        
+      22 +        clearButton.titleLabel?.font = .systemFont(ofSize: 14) 
+      23 +        clearButton.addTarget(self, action: #selector(clearAllB
+         +uttonTapped), for: .touchUpInside)                             
+      24 +                                                               
+      25 +        view.addSubview(titleLabel)                            
+      26 +        view.addSubview(clearButton)                           
+      27 +                                                               
+      28 +        titleLabel.snp.makeConstraints { make in               
+      29 +            make.leading.equalToSuperview().offset(16)         
+      30 +            make.centerY.equalToSuperview()                    
+      31 +        }                                                      
+      32 +                                                               
+      33 +        clearButton.snp.makeConstraints { make in              
+      34 +            make.trailing.equalToSuperview().offset(-16)       
+      35 +            make.centerY.equalToSuperview()                    
+      36 +        }                                                      
+      37 +                                                               
+      38 +        return view                                            
+      39 +    }()                                                        
+      40 +                                                               
+      41      // MARK: - Properties
+      42  
+      43      private let viewModel: SearchViewModel
+     ...
+      61          setupSearchController()
+      62          setupTableView()
+      63          bindViewModel()
+      64 +        viewModel.loadRecentSearches()                         
+      65      }
+      66  
+      67      // MARK: - Setup
+     ...
+       91      private func setupTableView() {
+       92          tableView.delegate = self
+       93          tableView.dataSource = self
+       63 -        tableView.register(UITableViewCell.self, forCellReuseI
+          -dentifier: "RecentSearchCell")                                
+       94 +        tableView.register(RecentSearchCell.self, forCellReuse
+          +Identifier: RecentSearchCell.reuseIdentifier)                 
+       95          tableView.keyboardDismissMode = .onDrag
+       96 +        tableView.rowHeight = 52                              
+       97 +        tableView.separatorInset = UIEdgeInsets(top: 0, left: 
+          +48, bottom: 0, right: 0)                                      
+       98      }
+       99  
+      100      private func bindViewModel() {
+     ...
+      105          viewModel.onError = { [weak self] error in
+      106              self?.showErrorAlert(error)
+      107          }
+      108 +                                                              
+      109 +        viewModel.onRecentSearchesUpdated = { [weak self] in  
+      110 +            self?.updateTableView()                           
+      111 +        }                                                     
+      112      }
+      113  
+      114 +    // MARK: - UI Updates                                     
+      115 +                                                              
+      116 +    private func updateTableView() {                          
+      117 +        tableView.reloadData()                                
+      118 +        updateHeaderVisibility()                              
+      119 +    }                                                         
+      120 +                                                              
+      121 +    private func updateHeaderVisibility() {                   
+      122 +        if viewModel.recentSearches.isEmpty {                 
+      123 +            tableView.tableHeaderView = nil                   
+      124 +        } else {                                              
+      125 +            headerView.frame = CGRect(x: 0, y: 0, width: table
+          +View.bounds.width, height: 44)                                
+      126 +            tableView.tableHeaderView = headerView            
+      127 +        }                                                     
+      128 +    }                                                         
+      129 +                                                              
+      130 +    // MARK: - Actions                                        
+      131 +                                                              
+      132 +    @objc private func clearAllButtonTapped() {               
+      133 +        let alert = UIAlertController(                        
+      134 +            title: "전체 삭제",                               
+      135 +            message: "최근 검색어를 모두 삭제하시겠습니까?",  
+      136 +            preferredStyle: .alert                            
+      137 +        )                                                     
+      138 +        alert.addAction(UIAlertAction(title: "취소", style: .c
+          +ancel))                                                       
+      139 +        alert.addAction(UIAlertAction(title: "삭제", style: .d
+          +estructive) { [weak self] _ in                                
+      140 +            self?.viewModel.deleteAllRecentSearches()         
+      141 +        })                                                    
+      142 +        present(alert, animated: true)                        
+      143 +    }                                                         
+      144 +                                                              
+      145      // MARK: - Navigation
+      146  
+      147      private func navigateToSearchResult(with query: String) {
+      148 +        // Issue #6에서 SearchResultViewController로 이동 구현
+          + 예정                                                         
+      149          let alert = UIAlertController(
+      150              title: "검색 실행",
+      151              message: "'\(query)' 검색 결과 화면으로 이동합니다
+           .",
+     ...
+      190  
+      191  extension SearchViewController: UITableViewDataSource {
+      192      func tableView(_ tableView: UITableView, numberOfRowsInSec
+           tion section: Int) -> Int {
+      124 -        return 0 // Issue #5에서 최근 검색어 구현 예정        
+      193 +        return viewModel.recentSearches.count                 
+      194      }
+      195  
+      196      func tableView(_ tableView: UITableView, cellForRowAt inde
+           xPath: IndexPath) -> UITableViewCell {
+      128 -        let cell = tableView.dequeueReusableCell(withIdentifie
+          -r: "RecentSearchCell", for: indexPath)                        
+      197 +        guard let cell = tableView.dequeueReusableCell(       
+      198 +            withIdentifier: RecentSearchCell.reuseIdentifier, 
+      199 +            for: indexPath                                    
+      200 +        ) as? RecentSearchCell,                               
+      201 +              let recentSearch = viewModel.recentSearch(at: in
+          +dexPath.row) else {                                           
+      202 +            return UITableViewCell()                          
+      203 +        }                                                     
+      204 +                                                              
+      205 +        cell.configure(with: recentSearch)                    
+      206 +        cell.onDelete = { [weak self] in                      
+      207 +            self?.viewModel.deleteRecentSearch(at: indexPath.r
+          +ow)                                                           
+      208 +        }                                                     
+      209 +                                                              
+      210          return cell
+      211      }
+      212  }
+     ...
+      216  extension SearchViewController: UITableViewDelegate {
+      217      func tableView(_ tableView: UITableView, didSelectRowAt in
+           dexPath: IndexPath) {
+      218          tableView.deselectRow(at: indexPath, animated: true)
+      138 -        // Issue #5에서 최근 검색어 탭 처리 구현 예정         
+      219 +                                                              
+      220 +        guard let recentSearch = viewModel.recentSearch(at: in
+          +dexPath.row) else { return }                                  
+      221 +        viewModel.search(query: recentSearch.query)           
+      222      }
+      223  }
+  ⎿  Found 6 new diagnostic issues in 1 file (ctrl+o to expand)
+
+⏺ Bash(xcodebuild -project GitHubSearch.xcodeproj -scheme GitHubSearch
+      -destination 'platform=iOS Simulator,name=iPhone 16' build 2>&1 | grep -E
+      "(BUILD|error:)" | tai…)
+  ⎿ /Users/allen/Dev/Repo/GitHubSearch/GitHubSearch/Presentation/Search/Sea
+    rchViewModel.swift:14:38: error: cannot find type 'RecentSearchUseCaseP
+    rotocol' in scope
+    … +4 lines (ctrl+o to expand)
+
+
+  ⎿  Found 1 new diagnostic issue in 1 file (ctrl+o to expand)
+
+⏺ 새 파일들이 프로젝트에 추가되지 않았습니다. Xcode 프로젝트에 파일을
+  추가하겠습니다.
+
+⏺ Read 3 files (ctrl+o to expand)
+
+⏺ Xcode 프로젝트 설정을 확인해보겠습니다.
+
+⏺ Searched for 1 pattern (ctrl+o to expand)
+
+⏺ Ruby xcodeproj gem으로 파일을 프로젝트에 추가하겠습니다.
+
+⏺ Bash(ruby -e "require 'xcodeproj'" 2>&1 || echo "xcodeproj gem 필요")
+  ⎿  (No content)
+
+⏺ Bash(cat << 'EOF' | ruby
+      require 'xcodeproj'…)
+  ⎿ Added: /Users/allen/Dev/Repo/GitHubSearch/GitHubSearch/Data/Storage/Rec
+    entSearchStorage.swift
+    Added: /Users/allen/Dev/Repo/GitHubSearch/GitHubSearch/Data/Repositorie
+    … +8 lines (ctrl+o to expand)
+
+
+
+⏺ Bash(xcodebuild -project GitHubSearch.xcodeproj -scheme GitHubSearch
+      -destination 'platform=iOS Simulator,name=iPhone 16' build 2>&1 | grep -E
+      "(BUILD|error:)" | tai…)
+  ⎿  ** BUILD SUCCEEDED **
+  ⎿  (timeout 2m)
+
+⏺ 빌드 성공. Task 5.5 커밋하겠습니다.
+
+⏺ Bash(git add -A && git commit -m "feat(search): 최근 검색어 목록 표시 및 관리
+      기능…)
+  ⎿  [main 4fab936] feat(search): 최근 검색어 목록 표시 및 관리 기능
+      13 files changed, 2782 insertions(+), 35 deletions(-)
+      create mode 100644 .claude/settings.local.json
+     … +11 lines (ctrl+o to expand)
+
+⏺ Issue #5 기능 구현 완료. 테스트를 추가하겠습니다.
+
+⏺ Read 1 file (ctrl+o to expand)
+
+⏺ RecentSearchStorage 테스트를 추가하겠습니다.
+
+⏺ Write(GitHubSearchTests/RecentSearchStorageTests.swift)
+  ⎿  Wrote 131 lines to GitHubSearchTests/RecentSearchStorageTests.swift
+       1 import XCTest
+       2 @testable import GitHubSearch
+       3 
+       4 final class RecentSearchStorageTests: XCTestCase {
+       5 
+       6     var sut: RecentSearchStorage!
+       7     var testUserDefaults: UserDefaults!
+       8 
+       9     override func setUp() {
+      10         super.setUp()
+     … +121 lines (ctrl+o to expand)
+
+⏺ SearchViewModel 테스트에 최근 검색어 관련 테스트를 추가하겠습니다.
+
+⏺ Write(GitHubSearchTests/SearchViewModelTests.swift)
+  ⎿  Added 138 lines, removed 1 line
+       4  final class SearchViewModelTests: XCTestCase {
+       5  
+       6      var sut: SearchViewModel!
+       7 +    var mockRecentSearchUseCase: MockRecentSearchUseCase!      
+       8  
+       9      override func setUp() {
+      10          super.setUp()
+      10 -        sut = SearchViewModel()                                
+      11 +        mockRecentSearchUseCase = MockRecentSearchUseCase()    
+      12 +        sut = SearchViewModel(recentSearchUseCase: mockRecentSe
+         +archUseCase)                                                   
+      13      }
+      14  
+      15      override func tearDown() {
+      16          sut = nil
+      17 +        mockRecentSearchUseCase = nil                          
+      18          super.tearDown()
+      19      }
+      20  
+     ...
+      129          // when & then - 크래시 없이 실행되면 성공
+      130          sut.search(query: "swift")
+      131      }
+      132 +                                                              
+      133 +    // MARK: - 최근 검색어 테스트                             
+      134 +                                                              
+      135 +    func test_검색하면_최근_검색어에_저장된다() {             
+      136 +        // given                                              
+      137 +        sut.onSearchResult = { _ in }                         
+      138 +                                                              
+      139 +        // when                                               
+      140 +        sut.search(query: "swift")                            
+      141 +                                                              
+      142 +        // then                                               
+      143 +        XCTAssertTrue(mockRecentSearchUseCase.saveSearchCalled
+          +)                                                             
+      144 +        XCTAssertEqual(mockRecentSearchUseCase.savedQuery, "sw
+          +ift")                                                         
+      145 +    }                                                         
+      146 +                                                              
+      147 +    func test_loadRecentSearches_호출시_최근검색어가_로드된다(
+          +) {                                                           
+      148 +        // given                                              
+      149 +        mockRecentSearchUseCase.mockSearches = [              
+      150 +            RecentSearch(query: "swift", searchedAt: Date()), 
+      151 +            RecentSearch(query: "kotlin", searchedAt: Date()) 
+      152 +        ]                                                     
+      153 +                                                              
+      154 +        // when                                               
+      155 +        sut.loadRecentSearches()                              
+      156 +                                                              
+      157 +        // then                                               
+      158 +        XCTAssertEqual(sut.recentSearches.count, 2)           
+      159 +        XCTAssertEqual(sut.recentSearches[0].query, "swift")  
+      160 +    }                                                         
+      161 +                                                              
+      162 +    func test_loadRecentSearches_호출시_콜백이_호출된다() {   
+      163 +        // given                                              
+      164 +        var callbackCalled = false                            
+      165 +        sut.onRecentSearchesUpdated = {                       
+      166 +            callbackCalled = true                             
+      167 +        }                                                     
+      168 +                                                              
+      169 +        // when                                               
+      170 +        sut.loadRecentSearches()                              
+      171 +                                                              
+      172 +        // then                                               
+      173 +        XCTAssertTrue(callbackCalled)                         
+      174 +    }                                                         
+      175 +                                                              
+      176 +    func test_deleteRecentSearch_호출시_해당_검색어가_삭제된다
+          +() {                                                          
+      177 +        // given                                              
+      178 +        mockRecentSearchUseCase.mockSearches = [              
+      179 +            RecentSearch(query: "swift", searchedAt: Date()), 
+      180 +            RecentSearch(query: "kotlin", searchedAt: Date()) 
+      181 +        ]                                                     
+      182 +        sut.loadRecentSearches()                              
+      183 +                                                              
+      184 +        // when                                               
+      185 +        sut.deleteRecentSearch(at: 0)                         
+      186 +                                                              
+      187 +        // then                                               
+      188 +        XCTAssertTrue(mockRecentSearchUseCase.deleteSearchCall
+          +ed)                                                           
+      189 +        XCTAssertEqual(mockRecentSearchUseCase.deletedQuery, "
+          +swift")                                                       
+      190 +    }                                                         
+      191 +                                                              
+      192 +    func test_deleteAllRecentSearches_호출시_모든_검색어가_삭 
+          +제된다() {                                                    
+      193 +        // given                                              
+      194 +        mockRecentSearchUseCase.mockSearches = [              
+      195 +            RecentSearch(query: "swift", searchedAt: Date()), 
+      196 +            RecentSearch(query: "kotlin", searchedAt: Date()) 
+      197 +        ]                                                     
+      198 +        sut.loadRecentSearches()                              
+      199 +                                                              
+      200 +        // when                                               
+      201 +        sut.deleteAllRecentSearches()                         
+      202 +                                                              
+      203 +        // then                                               
+      204 +        XCTAssertTrue(mockRecentSearchUseCase.deleteAllCalled)
+      205 +    }                                                         
+      206 +                                                              
+      207 +    func test_recentSearch_at_유효한_인덱스로_호출시_검색어를_
+          +반환한다() {                                                  
+      208 +        // given                                              
+      209 +        mockRecentSearchUseCase.mockSearches = [              
+      210 +            RecentSearch(query: "swift", searchedAt: Date())  
+      211 +        ]                                                     
+      212 +        sut.loadRecentSearches()                              
+      213 +                                                              
+      214 +        // when                                               
+      215 +        let result = sut.recentSearch(at: 0)                  
+      216 +                                                              
+      217 +        // then                                               
+      218 +        XCTAssertEqual(result?.query, "swift")                
+      219 +    }                                                         
+      220 +                                                              
+      221 +    func test_recentSearch_at_범위초과_인덱스로_호출시_nil을_ 
+          +반환한다() {                                                  
+      222 +        // given                                              
+      223 +        sut.loadRecentSearches()                              
+      224 +                                                              
+      225 +        // when                                               
+      226 +        let result = sut.recentSearch(at: 100)                
+      227 +                                                              
+      228 +        // then                                               
+      229 +        XCTAssertNil(result)                                  
+      230 +    }                                                         
+      231  }
+      232 +                                                              
+      233 +// MARK: - Mock                                               
+      234 +                                                              
+      235 +final class MockRecentSearchUseCase: RecentSearchUseCaseProtoc
+          +ol {                                                          
+      236 +                                                              
+      237 +    var mockSearches: [RecentSearch] = []                     
+      238 +                                                              
+      239 +    var saveSearchCalled = false                              
+      240 +    var savedQuery: String?                                   
+      241 +                                                              
+      242 +    var deleteSearchCalled = false                            
+      243 +    var deletedQuery: String?                                 
+      244 +                                                              
+      245 +    var deleteAllCalled = false                               
+      246 +                                                              
+      247 +    func getRecentSearches() -> [RecentSearch] {              
+      248 +        return mockSearches                                   
+      249 +    }                                                         
+      250 +                                                              
+      251 +    func saveSearch(_ query: String) {                        
+      252 +        saveSearchCalled = true                               
+      253 +        savedQuery = query                                    
+      254 +    }                                                         
+      255 +                                                              
+      256 +    func deleteSearch(_ query: String) {                      
+      257 +        deleteSearchCalled = true                             
+      258 +        deletedQuery = query                                  
+      259 +        mockSearches.removeAll { $0.query == query }          
+      260 +    }                                                         
+      261 +                                                              
+      262 +    func deleteAllSearches() {                                
+      263 +        deleteAllCalled = true                                
+      264 +        mockSearches.removeAll()                              
+      265 +    }                                                         
+      266 +}                                                             
+  ⎿  Found 1 new diagnostic issue in 1 file (ctrl+o to expand)
+
+⏺ 테스트 파일을 프로젝트에 추가하고 테스트를 실행하겠습니다.
+
+⏺ Bash(cat << 'EOF' | ruby
+      require 'xcodeproj'…)
+  ⎿  Error: Exit code 1
+     -:14:in `<main>': undefined method `files' for nil:NilClass (NoMethodError)
+  ⎿  Found 1 new diagnostic issue in 1 file (ctrl+o to expand)
+
+⏺ Bash(cat << 'EOF' | ruby
+      require 'xcodeproj'…)
+  ⎿    GitHubSearch
+         Application
+         Domain
+     … +21 lines (ctrl+o to expand)
+
+⏺ Bash(cat << 'EOF' | ruby
+      require 'xcodeproj'…)
+  ⎿  Added: RecentSearchStorageTests.swift
+     Project saved
+
+⏺ Bash(xcodebuild test -project GitHubSearch.xcodeproj -scheme GitHubSearch
+      -destination 'platform=iOS Simulator,name=iPhone 16'
+      -only-testing:GitHubSearchTests 2>&1 |…)
+  ⎿ Test case
+    'SearchViewControllerTests.test_searchController가_배경을_흐리
+    게_하지_않는다()' passed on 'Clone 1 of iPhone 16 - GitHubSearch (3744
+    2)' (0.002 seconds)
+    … +86 lines (ctrl+o to expand)
+  ⎿  (timeout 3m)
+
+⏺ 모든 테스트 통과. 테스트 관련 커밋을 하겠습니다.
+
+⏺ Bash(git add -A && git commit -m "test(issue5): 최근 검색어 기능 테스트 추가…)
+  ⎿  [main 812a388] test(issue5): 최근 검색어 기능 테스트 추가
+      3 files changed, 272 insertions(+), 1 deletion(-)
+      create mode 100644 GitHubSearchTests/RecentSearchStorageTests.swift
+
+⏺ Issue #5 완료
+  ┌──────┬─────────┬─────────────────────────────┐
+  │ Task │  커밋   │            설명             │
+  ├──────┼─────────┼─────────────────────────────┤
+  │ 5.1  │ 5cd3ab3 │ RecentSearchStorage 구현    │
+  ├──────┼─────────┼─────────────────────────────┤
+  │ 5.2  │ dd8bc7f │ RecentSearchRepository 구현 │
+  ├──────┼─────────┼─────────────────────────────┤
+  │ 5.3  │ f0e9af6 │ RecentSearchUseCase 구현    │
+  ├──────┼─────────┼─────────────────────────────┤
+  │ 5.4  │ 11cf63b │ RecentSearchCell 구현       │
+  ├──────┼─────────┼─────────────────────────────┤
+  │ 5.6  │ b352027 │ Date.relativeString 확장    │
+  ├──────┼─────────┼─────────────────────────────┤
+  │ 5.5  │ 4fab936 │ SearchViewController 통합   │
+  ├──────┼─────────┼─────────────────────────────┤
+  │ Test │ 812a388 │ 테스트 추가 (15개)          │
+  └──────┴─────────┴─────────────────────────────┘
+  총 테스트: 31개 (All Passed)
+
+  ---
+  Issue #6 (검색 결과 화면 - 리스트) 구현을 시작할까요?
+
+✻ Crunched for 5m 14s
+
+❯ sentinel 저장해줘.  
+
+⏺ Bash(git log -1 --format="%h %s")
+  ⎿  812a388 test(issue5): 최근 검색어 기능 테스트 추가
+
+⏺ Write(docs/ai-dev/sentinel-2026-02-01-194500.md)
+  ⎿  Wrote 208 lines to docs/ai-dev/sentinel-2026-02-01-194500.md
+      1 # Sentinel: GitHubSearch Session
+      2 
+      3 **Session ID**: sentinel-2026-02-01-194500
+      4 **저장 시간**: 2026-02-01 19:45:00
+      5 **프로젝트**: GitHubSearch
+      6 
+      7 ---
+      8 
+      9 ## 현재 진행 상태
+     … +198 lines (ctrl+o to expand)
+
+⏺ Sentinel 저장 완료
+
+  Session ID: sentinel-2026-02-01-194500
+
+  현재 상태
+  ┌────────┬───────────────────────────────┐
+  │  항목  │             상태              │
+  ├────────┼───────────────────────────────┤
+  │ Phase  │ impl (5/9)                    │
+  ├────────┼───────────────────────────────┤
+  │ 완료   │ Phase 0 + Issue #4 + Issue #5 │
+  ├────────┼───────────────────────────────┤
+  │ 다음   │ Issue #6: 검색 결과 리스트    │
+  ├────────┼───────────────────────────────┤
+  │ 테스트 │ 31개 (All Passed)             │
+  └────────┴───────────────────────────────┘
+  Git 상태
+
+  - Branch: main
+  - Last Commit: 812a388
+  - Uncommitted: 없음
+
+  복원 명령어
+
+  /ai-dev.sentinel restore sentinel-2026-02-01-194500
+
+  저장 경로: docs/ai-dev/sentinel-2026-02-01-194500.md
+
+✻ Crunched for 47s
