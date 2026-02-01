@@ -11,8 +11,9 @@ final class WebViewController: UIViewController {
 
     // MARK: - Properties
 
-    private let url: URL
-    private let repoName: String
+    let url: URL
+    let repoName: String
+    private(set) var loadedRequest: URLRequest?
 
     // MARK: - Initialization
 
@@ -61,6 +62,7 @@ final class WebViewController: UIViewController {
 
     private func loadURL() {
         let request = URLRequest(url: url)
+        loadedRequest = request
         webView.load(request)
     }
 }
