@@ -7,13 +7,14 @@ final class SearchResultViewModel {
     enum State: Equatable {
         case idle
         case loading
+        case loadingMore
         case success(repositories: [Repository], totalCount: Int)
         case empty
         case error(message: String)
 
         static func == (lhs: State, rhs: State) -> Bool {
             switch (lhs, rhs) {
-            case (.idle, .idle), (.loading, .loading), (.empty, .empty):
+            case (.idle, .idle), (.loading, .loading), (.loadingMore, .loadingMore), (.empty, .empty):
                 return true
             case let (.success(lRepos, lCount), .success(rRepos, rCount)):
                 return lRepos.map(\.id) == rRepos.map(\.id) && lCount == rCount
@@ -85,6 +86,7 @@ final class SearchResultViewModel {
 
         isLoading = true
         currentPage += 1
+        state = .loadingMore
 
         Task { @MainActor in
             do {
@@ -102,7 +104,7 @@ final class SearchResultViewModel {
     }
 
     func shouldLoadMore(currentIndex: Int) -> Bool {
-        !isLoading && hasNextPage && currentIndex >= repositories.count - 5
+        !isLoading && hasNextPage && currentIndex >= repositories.count - 10
     }
 
     func repository(at index: Int) -> Repository? {

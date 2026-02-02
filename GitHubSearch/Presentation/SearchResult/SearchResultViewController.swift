@@ -35,6 +35,12 @@ final class SearchResultViewController: UIViewController {
         return view
     }()
 
+    private lazy var footerActivityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .medium)
+        indicator.frame = CGRect(x: 0, y: 0, width: 0, height: 44)
+        return indicator
+    }()
+
     // MARK: - Properties
 
     private let viewModel: SearchResultViewModel
@@ -93,6 +99,7 @@ final class SearchResultViewController: UIViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 100
         tableView.keyboardDismissMode = .onDrag
+        tableView.prefetchDataSource = self
     }
 
     private func bindViewModel() {
@@ -117,8 +124,14 @@ final class SearchResultViewController: UIViewController {
             tableView.isHidden = true
             emptyLabel.isHidden = true
 
+        case .loadingMore:
+            tableView.tableFooterView = footerActivityIndicator
+            footerActivityIndicator.startAnimating()
+
         case .success(_, let totalCount):
             activityIndicator.stopAnimating()
+            footerActivityIndicator.stopAnimating()
+            tableView.tableFooterView = nil
             tableView.isHidden = false
             emptyLabel.isHidden = true
             updateHeader(totalCount: totalCount)
@@ -205,6 +218,17 @@ extension SearchResultViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if viewModel.shouldLoadMore(currentIndex: indexPath.row) {
+            viewModel.loadNextPage(query: query)
+        }
+    }
+}
+
+// MARK: - UITableViewDataSourcePrefetching
+
+extension SearchResultViewController: UITableViewDataSourcePrefetching {
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        guard let maxIndex = indexPaths.map(\.row).max() else { return }
+        if viewModel.shouldLoadMore(currentIndex: maxIndex) {
             viewModel.loadNextPage(query: query)
         }
     }
