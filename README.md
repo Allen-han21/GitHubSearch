@@ -82,9 +82,9 @@ GitHub 저장소 검색 iOS 앱
 - [x] 저장소 정보 표시 (Avatar, Name, Description, Stars, Language)
 - [x] 결과 선택 시 WebView로 GitHub 페이지 이동
 
-### 추가 기능 (미구현)
-- [ ] 페이지네이션 (프리패칭)
-- [ ] 자동완성
+### 추가 기능 (구현 완료)
+- [x] 페이지네이션 (프리패칭)
+- [x] 자동완성
 
 ---
 
@@ -169,14 +169,15 @@ xcodebuild test -scheme GitHubSearch -destination 'platform=iOS Simulator,name=i
 
 | 테스트 파일 | 테스트 수 | 설명 |
 |------------|----------|------|
-| SearchViewModelTests | 15 | 검색 ViewModel 로직 |
+| SearchViewModelTests | 22 | 검색 ViewModel 로직 + 자동완성 |
 | SearchViewControllerTests | 9 | 검색 화면 UI 설정 |
 | RecentSearchStorageTests | 8 | 최근 검색어 저장소 |
+| RecentSearchUseCaseTests | 5 | 자동완성 필터링 로직 |
 | SearchResultViewModelTests | 11 | 검색 결과 ViewModel |
 | SearchResponseDTOTests | 7 | API 응답 DTO 파싱 |
-| WebViewControllerTests | 5 | WebView 화면 |
+| WebViewControllerTests | 6 | WebView 화면 |
 
-**총 55개 테스트 / 100% 통과**
+**총 68개 테스트 / 100% 통과**
 
 ---
 
@@ -215,7 +216,8 @@ GET https://api.github.com/search/repositories?q={keyword}&page={page}
 ## 관련 문서
 
 - [PRD](docs/PRD.md) - 요구사항 정의서
-- [AI 대화 로그](docs/AI_CONVERSATION_LOG.md) - Claude Code 대화 기록
+- [AI 협업 기록](docs/AI-COLLABORATION.md) - AI 개발 워크플로우 및 기술 토론
+- [원본 대화 로그](docs/prompts/) - Claude Code 전체 대화 기록
 
 ---
 
