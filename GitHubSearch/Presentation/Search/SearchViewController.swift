@@ -176,8 +176,8 @@ extension SearchViewController: UISearchBarDelegate {
         guard let query = searchBar.text?.trimmingCharacters(in: .whitespaces),
               !query.isEmpty else { return }
 
-        searchController.isActive = false
         viewModel.search(query: query)
+        searchController.isActive = false
     }
 }
 
