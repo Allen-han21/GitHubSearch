@@ -28,6 +28,7 @@ final class SearchResultViewModel {
     // MARK: - Output Callbacks
 
     var onStateChanged: ((State) -> Void)?
+    var onPaginationError: ((String) -> Void)?
 
     // MARK: - Properties
 
@@ -93,6 +94,8 @@ final class SearchResultViewModel {
                 self.state = .success(repositories: self.repositories, totalCount: self.totalCount)
             } catch {
                 self.currentPage -= 1
+                print("[Pagination] 다음 페이지 로드 실패: \(error)")
+                self.onPaginationError?(error.localizedDescription)
             }
             self.isLoading = false
         }
