@@ -228,6 +228,98 @@ final class SearchViewModelTests: XCTestCase {
         // then
         XCTAssertNil(result)
     }
+
+    // MARK: - 자동완성 테스트
+
+    func test_updateAutocomplete_검색중이고_입력있으면_isSearching이_true() {
+        // when
+        sut.updateAutocomplete(query: "swift", isActive: true)
+
+        // then
+        XCTAssertTrue(sut.isSearching)
+    }
+
+    func test_updateAutocomplete_검색중이지만_입력없으면_isSearching이_false() {
+        // when
+        sut.updateAutocomplete(query: "", isActive: true)
+
+        // then
+        XCTAssertFalse(sut.isSearching)
+    }
+
+    func test_updateAutocomplete_검색중이_아니면_isSearching이_false() {
+        // when
+        sut.updateAutocomplete(query: "swift", isActive: false)
+
+        // then
+        XCTAssertFalse(sut.isSearching)
+    }
+
+    func test_updateAutocomplete_검색중이면_자동완성목록이_업데이트된다() {
+        // given
+        mockRecentSearchUseCase.mockSearches = [
+            RecentSearch(query: "swift", searchedAt: Date()),
+            RecentSearch(query: "swiftui", searchedAt: Date()),
+            RecentSearch(query: "kotlin", searchedAt: Date())
+        ]
+
+        // when
+        sut.updateAutocomplete(query: "sw", isActive: true)
+
+        // then
+        XCTAssertEqual(sut.autocompleteSuggestions.count, 2)
+    }
+
+    func test_updateAutocomplete_검색중이_아니면_자동완성목록이_비워진다() {
+        // given
+        mockRecentSearchUseCase.mockSearches = [
+            RecentSearch(query: "swift", searchedAt: Date())
+        ]
+        sut.updateAutocomplete(query: "sw", isActive: true)
+        XCTAssertFalse(sut.autocompleteSuggestions.isEmpty)
+
+        // when
+        sut.updateAutocomplete(query: "sw", isActive: false)
+
+        // then
+        XCTAssertTrue(sut.autocompleteSuggestions.isEmpty)
+    }
+
+    func test_updateAutocomplete_호출시_콜백이_호출된다() {
+        // given
+        var callbackCalled = false
+        sut.onRecentSearchesUpdated = {
+            callbackCalled = true
+        }
+
+        // when
+        sut.updateAutocomplete(query: "test", isActive: true)
+
+        // then
+        XCTAssertTrue(callbackCalled)
+    }
+
+    func test_autocompleteSuggestion_at_유효한_인덱스로_호출시_항목을_반환한다() {
+        // given
+        mockRecentSearchUseCase.mockSearches = [
+            RecentSearch(query: "swift", searchedAt: Date())
+        ]
+        sut.updateAutocomplete(query: "sw", isActive: true)
+
+        // when
+        let result = sut.autocompleteSuggestion(at: 0)
+
+        // then
+        XCTAssertEqual(result?.query, "swift")
+    }
+
+    func test_autocompleteSuggestion_at_범위초과_인덱스로_호출시_nil을_반환한다() {
+        // when
+        let result = sut.autocompleteSuggestion(at: 100)
+
+        // then
+        XCTAssertNil(result)
+    }
 }
 
 // MARK: - Mock
@@ -262,5 +354,11 @@ final class MockRecentSearchUseCase: RecentSearchUseCaseProtocol {
     func deleteAllSearches() {
         deleteAllCalled = true
         mockSearches.removeAll()
+    }
+
+    func getAutocompleteSuggestions(for query: String) -> [RecentSearch] {
+        guard !query.isEmpty else { return [] }
+        let lowercasedQuery = query.lowercased()
+        return mockSearches.filter { $0.query.lowercased().contains(lowercasedQuery) }
     }
 }

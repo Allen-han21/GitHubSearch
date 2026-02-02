@@ -5,6 +5,7 @@ protocol RecentSearchUseCaseProtocol {
     func saveSearch(_ query: String)
     func deleteSearch(_ query: String)
     func deleteAllSearches()
+    func getAutocompleteSuggestions(for query: String) -> [RecentSearch]
 }
 
 final class RecentSearchUseCase: RecentSearchUseCaseProtocol {
@@ -37,5 +38,12 @@ final class RecentSearchUseCase: RecentSearchUseCaseProtocol {
 
     func deleteAllSearches() {
         repository.deleteAll()
+    }
+
+    func getAutocompleteSuggestions(for query: String) -> [RecentSearch] {
+        guard !query.isEmpty else { return [] }
+        let lowercasedQuery = query.lowercased()
+        return repository.getSearches()
+            .filter { $0.query.lowercased().contains(lowercasedQuery) }
     }
 }

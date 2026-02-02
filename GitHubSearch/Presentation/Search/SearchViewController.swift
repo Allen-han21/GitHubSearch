@@ -119,7 +119,7 @@ final class SearchViewController: UIViewController {
     }
 
     private func updateHeaderVisibility() {
-        if viewModel.recentSearches.isEmpty {
+        if viewModel.isSearching || viewModel.recentSearches.isEmpty {
             tableView.tableHeaderView = nil
         } else {
             headerView.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 44)
@@ -164,7 +164,8 @@ final class SearchViewController: UIViewController {
 
 extension SearchViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        // Issue #9에서 자동완성 구현 예정
+        let query = searchController.searchBar.text ?? ""
+        viewModel.updateAutocomplete(query: query, isActive: searchController.isActive)
     }
 }
 
@@ -184,21 +185,32 @@ extension SearchViewController: UISearchBarDelegate {
 
 extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.recentSearches.count
+        return viewModel.isSearching
+            ? viewModel.autocompleteSuggestions.count
+            : viewModel.recentSearches.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: RecentSearchCell.reuseIdentifier,
             for: indexPath
-        ) as? RecentSearchCell,
-              let recentSearch = viewModel.recentSearch(at: indexPath.row) else {
+        ) as? RecentSearchCell else {
             return UITableViewCell()
         }
 
-        cell.configure(with: recentSearch)
-        cell.onDelete = { [weak self] in
-            self?.viewModel.deleteRecentSearch(at: indexPath.row)
+        if viewModel.isSearching {
+            guard let suggestion = viewModel.autocompleteSuggestion(at: indexPath.row) else {
+                return UITableViewCell()
+            }
+            cell.configure(with: suggestion, showDeleteButton: false)
+        } else {
+            guard let recentSearch = viewModel.recentSearch(at: indexPath.row) else {
+                return UITableViewCell()
+            }
+            cell.configure(with: recentSearch)
+            cell.onDelete = { [weak self] in
+                self?.viewModel.deleteRecentSearch(at: indexPath.row)
+            }
         }
 
         return cell
@@ -211,7 +223,15 @@ extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
-        guard let recentSearch = viewModel.recentSearch(at: indexPath.row) else { return }
-        viewModel.search(query: recentSearch.query)
+        let query: String?
+        if viewModel.isSearching {
+            query = viewModel.autocompleteSuggestion(at: indexPath.row)?.query
+        } else {
+            query = viewModel.recentSearch(at: indexPath.row)?.query
+        }
+
+        guard let query else { return }
+        searchController.isActive = false
+        viewModel.search(query: query)
     }
 }

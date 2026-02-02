@@ -14,6 +14,8 @@ final class SearchViewModel {
     private let recentSearchUseCase: RecentSearchUseCaseProtocol
 
     private(set) var recentSearches: [RecentSearch] = []
+    private(set) var autocompleteSuggestions: [RecentSearch] = []
+    private(set) var isSearching: Bool = false
 
     // MARK: - Initialization
 
@@ -58,5 +60,22 @@ final class SearchViewModel {
     func recentSearch(at index: Int) -> RecentSearch? {
         guard index < recentSearches.count else { return nil }
         return recentSearches[index]
+    }
+
+    // MARK: - Autocomplete
+
+    func updateAutocomplete(query: String, isActive: Bool) {
+        isSearching = isActive && !query.isEmpty
+        if isSearching {
+            autocompleteSuggestions = recentSearchUseCase.getAutocompleteSuggestions(for: query)
+        } else {
+            autocompleteSuggestions = []
+        }
+        onRecentSearchesUpdated?()
+    }
+
+    func autocompleteSuggestion(at index: Int) -> RecentSearch? {
+        guard index < autocompleteSuggestions.count else { return nil }
+        return autocompleteSuggestions[index]
     }
 }

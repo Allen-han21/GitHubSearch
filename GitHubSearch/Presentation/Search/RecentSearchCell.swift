@@ -94,9 +94,10 @@ final class RecentSearchCell: UITableViewCell {
 
     // MARK: - Configuration
 
-    func configure(with recentSearch: RecentSearch) {
+    func configure(with recentSearch: RecentSearch, showDeleteButton: Bool = true) {
         queryLabel.text = recentSearch.query
         timeLabel.text = recentSearch.searchedAt.relativeString
+        deleteButton.isHidden = !showDeleteButton
     }
 
     // MARK: - Actions
@@ -112,5 +113,6 @@ final class RecentSearchCell: UITableViewCell {
         queryLabel.text = nil
         timeLabel.text = nil
         onDelete = nil
+        deleteButton.isHidden = false
     }
 }
