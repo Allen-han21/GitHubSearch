@@ -99,6 +99,10 @@ final class SearchResultViewController: UIViewController {
         viewModel.onStateChanged = { [weak self] state in
             self?.handleStateChange(state)
         }
+
+        viewModel.onPaginationError = { [weak self] message in
+            self?.showPaginationErrorAlert(message: message)
+        }
     }
 
     // MARK: - State Handling
@@ -151,6 +155,16 @@ final class SearchResultViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "확인", style: .default) { [weak self] _ in
             self?.navigationController?.popViewController(animated: true)
         })
+        present(alert, animated: true)
+    }
+
+    private func showPaginationErrorAlert(message: String) {
+        let alert = UIAlertController(
+            title: "추가 로드 실패",
+            message: message,
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "확인", style: .default))
         present(alert, animated: true)
     }
 }
