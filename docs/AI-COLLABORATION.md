@@ -33,14 +33,14 @@
 
 | 단계 | 설명 | 산출물 |
 |------|------|--------|
-| **analyze** | PRD + 코드베이스 분석, 엣지케이스 식별 | [analyze.md](ai-dev/analyze.md) |
-| **spec** | 기술 스택 결정, 상세 스펙 정의 | [spec.md](ai-dev/spec.md) |
-| **plan** | Task 단위 구현 계획 수립 | [plan.md](ai-dev/plan.md) |
-| **plan-check** | 5개 validators로 계획 검증 | [plan-check-report.md](ai-dev/plan-check-report.md) |
+| **analyze** | PRD + 코드베이스 분석, 엣지케이스 식별 | [01-analyze.md](ai-dev/01-analyze.md) |
+| **spec** | 기술 스택 결정, 상세 스펙 정의 | [02-spec.md](ai-dev/02-spec.md) |
+| **plan** | Task 단위 구현 계획 수립 | [03-plan.md](ai-dev/03-plan.md) |
+| **plan-check** | 5개 validators로 계획 검증 | [04-plan-check-report.md](ai-dev/04-plan-check-report.md) |
 | **impl** | Task별 구현 + 로컬 커밋 + 테스트 | 소스 코드 |
-| **code-check** | DRY/SOLID/Complexity 분석 | [code-check-report.md](ai-dev/code-check-report.md) |
-| **work-check** | 6개 병렬 bug checkers | [work-check-report.md](ai-dev/work-check-report.md) |
-| **review** | 비즈니스 규칙 검증 + 최종 판정 | [review-report.md](ai-dev/review-report.md) |
+| **code-check** | DRY/SOLID/Complexity 분석 | [05-code-check-report.md](ai-dev/05-code-check-report.md) |
+| **work-check** | 6개 병렬 bug checkers | [06-work-check-report.md](ai-dev/06-work-check-report.md) |
+| **review** | 비즈니스 규칙 검증 + 최종 판정 | [07-review-report.md](ai-dev/07-review-report.md) |
 
 ---
 
@@ -183,10 +183,10 @@ docs/prompts/
 
 | 문서 | 설명 |
 |------|------|
-| [analyze.md](ai-dev/analyze.md) | 요구사항 분석, 엣지케이스 식별 |
-| [spec.md](ai-dev/spec.md) | 기술 스택, 상세 스펙 |
-| [plan.md](ai-dev/plan.md) | Task 단위 구현 계획 |
-| [plan-check-report.md](ai-dev/plan-check-report.md) | 계획 검증 결과 |
-| [code-check-report.md](ai-dev/code-check-report.md) | 품질 검사 결과 |
-| [work-check-report.md](ai-dev/work-check-report.md) | 버그 검사 결과 |
-| [review-report.md](ai-dev/review-report.md) | 코드 리뷰 결과 |
+| [01-analyze.md](ai-dev/01-analyze.md) | 요구사항 분석, 엣지케이스 식별 |
+| [02-spec.md](ai-dev/02-spec.md) | 기술 스택, 상세 스펙 |
+| [03-plan.md](ai-dev/03-plan.md) | Task 단위 구현 계획 |
+| [04-plan-check-report.md](ai-dev/04-plan-check-report.md) | 계획 검증 결과 |
+| [05-code-check-report.md](ai-dev/05-code-check-report.md) | 품질 검사 결과 |
+| [06-work-check-report.md](ai-dev/06-work-check-report.md) | 버그 검사 결과 |
+| [07-review-report.md](ai-dev/07-review-report.md) | 코드 리뷰 결과 |
