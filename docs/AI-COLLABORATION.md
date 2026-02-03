@@ -11,6 +11,15 @@
 
 ---
 
+## 개발 방식
+
+- GitHub Issue 기반으로 작업 단위를 관리했습니다.
+- ai-dev 워크플로우 산출물은 `docs/ai-dev/`에 정리했습니다.
+- 원본 대화 로그는 `docs/prompts/`에 보관했습니다.
+- **Sentinel 패턴**: 장기 세션에서 컨텍스트 임계치 도달 시 자동 저장/복원으로 연속성 유지
+
+---
+
 ## AI 개발 워크플로우
 
 체계적인 AI 협업 개발을 위해 커스텀 워크플로우를 사용했습니다.
@@ -41,6 +50,65 @@
 | **code-check** | DRY/SOLID/Complexity 분석 | [05-code-check-report.md](ai-dev/05-code-check-report.md) |
 | **work-check** | 6개 병렬 bug checkers | [06-work-check-report.md](ai-dev/06-work-check-report.md) |
 | **review** | 비즈니스 규칙 검증 + 최종 판정 | [07-review-report.md](ai-dev/07-review-report.md) |
+
+## 검증 도구 구성
+
+### plan-check (계획 검증)
+- completeness-checker: spec→plan 요구사항 누락 검사
+- pattern-compliance: AGENTS.md 컨벤션 준수 검사
+- feasibility-assessor: 기술적 실현 가능성 평가
+- risk-assessor: 회귀/보안 위험 평가
+- scope-discipline: 과잉 구현(gold-plating) 탐지
+- devil's advocate: 오탐(false positive) 감소
+
+### code-check (코드 품질 검증)
+- DRY Checker: 중복 코드 탐지
+- SOLID Checker: 설계 원칙 위반 검사
+- Complexity Analyzer: 순환 복잡도 분석
+
+### work-check (버그 탐지)
+- Edge Case Hunter: 경계 조건 누락 탐지
+- Race Condition Detector: 동시성 문제 탐지
+- State Corruption Finder: 상태 오염 탐지
+- Memory Leak Hunter: 메모리 누수 탐지
+- Input Validation Checker: 입력 검증 누락 탐지
+- Regression Detector: 회귀 버그 탐지
+
+## 개발 도구 및 참고 문서
+
+### Claude Code (Opus 4.5)
+- 요구사항 분석부터 코드 검증까지 상호작용에 활용
+
+### Apple Developer Docs (apple-docs MCP)
+
+| API | 공식 문서 | iOS 지원 |
+|-----|----------|----------|
+| URLSession | [developer.apple.com](https://developer.apple.com/documentation/foundation/urlsession) | iOS 7.0+ |
+| WKWebView | [developer.apple.com](https://developer.apple.com/documentation/webkit/wkwebview) | iOS 8.0+ |
+| UISearchController | [developer.apple.com](https://developer.apple.com/documentation/uikit/uisearchcontroller) | iOS 8.0+ |
+| NSCache | [developer.apple.com](https://developer.apple.com/documentation/foundation/nscache) | iOS 4.0+ |
+| UserDefaults | [developer.apple.com](https://developer.apple.com/documentation/foundation/userdefaults) | iOS 2.0+ |
+
+**선택 이유**
+- URLSession: Apple 공식 네트워크 API, 외부 의존성 없음, async/await 지원
+- WKWebView: UIWebView deprecated, WKWebView가 유일한 선택지
+- UISearchController: Apple 표준 검색 패턴
+- NSCache: Thread-safe, 메모리 압박 시 자동 eviction
+- UserDefaults: 소량 데이터 영속성 (검색어 10개)
+
+### HIG (Human Interface Guidelines)
+- Accessibility: accessibilityLabel 명시, SearchBar/Cell/DeleteButton 음성 설명
+- Clear Visual Hierarchy: 스펙 2.1, 2.2의 레이아웃 설계
+- Feedback: 로딩 상태, 에러 처리
+- Consistency: 일관된 UI 패턴
+
+### SourceKit-LSP
+- 정의로 이동 (Go to Definition)
+- 참조 찾기 (Find References)
+- 심볼 검색
+
+### CodeRabbit AI
+- 최종 코드 리뷰 단계에서 CodeRabbit + 비즈니스 규칙 검증
 
 ---
 

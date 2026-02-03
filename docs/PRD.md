@@ -84,6 +84,42 @@ GitHub 저장소 검색 앱 개발
 
 ---
 
+## 4. 빌드 및 테스트
+
+### 요구사항
+- Xcode 15.0+
+- iOS 15.0+
+- Swift 5.9+
+
+### 실행 방법
+```bash
+open GitHubSearch.xcodeproj
+```
+
+### 의존성
+- SnapKit (SPM)
+
+### 테스트 실행
+```bash
+xcodebuild test -scheme GitHubSearch -destination 'platform=iOS Simulator,name=iPhone 16 Pro'
+```
+
+### 테스트 현황
+
+| 테스트 파일 | 테스트 수 | 설명 |
+|------------|----------|------|
+| SearchViewModelTests | 22 | 검색 ViewModel 로직 + 자동완성 |
+| SearchViewControllerTests | 9 | 검색 화면 UI 설정 |
+| RecentSearchStorageTests | 8 | 최근 검색어 저장소 |
+| RecentSearchUseCaseTests | 5 | 자동완성 필터링 로직 |
+| SearchResultViewModelTests | 11 | 검색 결과 ViewModel |
+| SearchResponseDTOTests | 7 | API 응답 DTO 파싱 |
+| WebViewControllerTests | 6 | WebView 화면 |
+
+**총 68개 테스트 / 100% 통과**
+
+---
+
 ## 5. 제출물
 ```
 GitHubSearch/
@@ -91,6 +127,9 @@ GitHubSearch/
 ├── CLAUDE.md
 ├── docs/
 │   ├── PRD.md
-│   └── AI_CONVERSATION_LOG.md
+│   ├── ARCHITECTURE.md
+│   ├── AI-COLLABORATION.md
+│   ├── ai-dev/
+│   └── prompts/
 └── GitHubSearch.xcodeproj/
 ```
